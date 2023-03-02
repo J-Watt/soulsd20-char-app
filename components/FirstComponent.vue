@@ -1,5 +1,7 @@
 <template>
-  This is a component {{ 2 }}
+  <div class="text-blackish mb-2">
+    This is a component {{ 2 }}
+  </div>
 </template>
 
 <script lang="ts" setup>
