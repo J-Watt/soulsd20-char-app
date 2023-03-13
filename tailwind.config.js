@@ -12,7 +12,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'blackish': '#333333'
+        'coal': '#333333'
       }
     },
   },
