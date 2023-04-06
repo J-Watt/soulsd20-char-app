@@ -12,7 +12,7 @@
         <div class="flex flex-col h-full w-full justify-between">
           <!-- name -->
           <div class="flex items-center text-4xl h-full text-white">
-            That guy
+            {{ playerStore.name }}
           </div>
 
           <!-- char stats -->
@@ -37,7 +37,7 @@
                 </span>
 
                 <span>
-                  Human
+                  {{ playerStore.race }}
                 </span>
               </div>
 
@@ -48,7 +48,7 @@
                 </span>
 
                 <span>
-                  Knight
+                  {{ playerStore.class }}
                 </span>
               </div>
             </div>
@@ -64,26 +64,56 @@
       <!-- HP/AP/FP -->
       <div class="flex flex-col justify-between pt-3 w-1/3 border-r border-l">
         <div class="flex flex-col space-y-3 px-3">
-          <div class="bg-red-500 w-full h-6 text-center rounded">
-            30/30
+          <div class="bg-red-500 border-red-500 w-full h-6 text-center rounded">
+            {{ hp }}/{{ maxHp }}
           </div>
           <div class="bg-blue-500 w-full h-6 text-center rounded">
-            8/8
+            {{ fp }}/{{ maxFp }}
           </div>
           <div class="bg-green-500 w-full h-6 text-center rounded">
-            10/10
+            {{ ap }}/{{ maxAp }}
           </div>
         </div>
 
         <div class="flex">
-          <div class="flex p-1 border-t border-r w-10 text-center">
-            3 <img src="@/img/icons/flask.png" class="w-6" style="filter: brightness(0) invert(0.9);">
+          <div class="flex mr-2">
+            <button @click="drinkFlask('hp')">
+              <div class="flex p-1 border-t border-r w-10 text-center">
+                {{ hpFlaskAmount }} <img src="@/img/icons/flask.png" class="w-6" style="filter: brightness(0) invert(0.9);">
+              </div>
+            </button>
+  
+            <div class="flex flex-col border-t border-r">
+              <button class="flex items-center justify-center h-4 border-b" @click="addFlask('hp')">
+                ^
+              </button>
+  
+              <button class="flex items-center justify-center h-4 rotate-180" @click="removeFlask('hp')">
+                ^
+              </button>
+            </div>
           </div>
-          <div class="flex p-1 border-t border-r w-10 text-center">
-            2 <img src="@/img/icons/flask.png" class="w-6" style="filter: brightness(0) invert(0.9);">
+
+          <div class="flex mr-2">
+            <button @click="drinkFlask('fp')">
+              <div class="flex p-1 border-l border-t border-r w-10 text-center">
+                {{ fpFlaskAmount }} <img src="@/img/icons/flask.png" class="w-6" style="filter: brightness(0) invert(0.9);">
+              </div>
+            </button>
+  
+            <div class="flex flex-col border-t border-r">
+              <button class="flex items-center justify-center h-4 border-b" @click="addFlask('fp')">
+                ^
+              </button>
+  
+              <button class="flex items-center justify-center h-4 rotate-180" @click="removeFlask('fp')">
+                ^
+              </button>
+            </div>
           </div>
-          <div class="flex items-center justify-center border-t border-r w-8">
-            +1
+
+          <div class="flex items-center justify-center border-l border-t border-r w-8 select-none">
+            +{{ flaskBonus }}
           </div>
         </div>
       </div>
@@ -163,21 +193,31 @@
             <div class="border-b">
               <input v-model="calculatorDamageInput" min="0" type="number" class="bg-black text-center pl-1 w-full" />
             </div>
-            <div class="w-full text-center border-b">
-              {{ calculatorDamagePhysical }}
-            </div>
-            <div class="w-full text-center border-b">
-              {{ calculatorDamageMagic }}
-            </div>
-            <div class="w-full text-center border-b">
-              {{ calculatorDamageFire }}
-            </div>
-            <div class="w-full text-center border-b">
-              {{ calculatorDamageLightning }}
-            </div>
-            <div class="w-full text-center">
-              {{ calculatorDamageDark }}
-            </div>
+            <button class="w-full" @click="takeDamage(calculatorDamagePhysical)">
+              <div class="w-full text-center border-b hover:bg-red-900">
+                {{ calculatorDamagePhysical }}
+              </div>
+            </button>
+            <button class="w-full" @click="takeDamage(calculatorDamageMagic)">
+              <div class="w-full text-center border-b hover:bg-red-900">
+                {{ calculatorDamageMagic }}
+              </div>
+            </button>
+            <button class="w-full" @click="takeDamage(calculatorDamageFire)">
+              <div class="w-full text-center border-b hover:bg-red-900">
+                {{ calculatorDamageFire }}
+              </div>
+            </button>
+            <button class="w-full" @click="takeDamage(calculatorDamageLightning)">
+              <div class="w-full text-center border-b hover:bg-red-900">
+                {{ calculatorDamageLightning }}
+              </div>
+            </button>
+            <button class="w-full" @click="takeDamage(calculatorDamageDark)">
+              <div class="w-full text-center hover:bg-red-900">
+                {{ calculatorDamageDark }}
+              </div>
+            </button>
           </div>
         </div>
 
@@ -272,15 +312,31 @@
 </template>
 
 <script setup lang="ts">
+import { usePlayerStore } from '~~/store/player';
+
+const playerStore = usePlayerStore()
+
+let hp = ref(30)
+let fp = ref(8)
+let ap = ref(10)
+
+let maxHp = ref(30)
+let maxFp = ref(8)
+let maxAp = ref(10)
+
+let hpFlaskAmount = ref(3)
+let fpFlaskAmount = ref(2)
+let flaskBonus = ref(1)
+
 const calculatorDamageInput = ref(0)
 
-const resistancePhysical = ref(3)
+const resistancePhysical = ref(0)
 const resistanceMagic = ref(0)
 const resistanceFire = ref(0)
 const resistanceLightning = ref(0)
 const resistanceDark = ref(0)
 
-const flatResistancePhysical = ref(1)
+const flatResistancePhysical = ref(0)
 const flatResistanceMagic = ref(0)
 const flatResistanceFire = ref(0)
 const flatResistanceLightning = ref(0)
@@ -299,6 +355,14 @@ const inflictionBleed = ref(0)
 const inflictionPoison = ref(0)
 const inflictionToxic = ref(0)
 const inflictionPoise = ref(0)
+
+const apFlaskRestoreAmount = computed<number>(()=>{
+  if (flaskBonus.value === 0) {
+    return 5
+  }
+  
+  return 5 + (2 * flaskBonus.value)
+})
 
 const calculatorDamagePhysical = computed(()=>{
   return calulateDamage(calculatorDamageInput.value, resistancePhysical.value, flatResistancePhysical.value)
@@ -319,5 +383,40 @@ const calculatorDamageDark = computed(()=>{
 function calulateDamage(damage: number, resistance: number, flatResistance: number): number {
   const baseResisted = Math.floor(damage * Math.min(resistance * .1, .3))
   return Math.max((damage - baseResisted - resistance - flatResistance), 0)
+}
+
+function takeDamage(damageAmount: number) {
+  hp.value -= damageAmount
+  if (hp.value < 0) hp.value = 0
+}
+
+function drinkFlask(type: string) {
+  if (type === 'hp') {
+    if (hpFlaskAmount.value === 0) return
+    hp.value = Math.min(hp.value + (15 * flaskBonus.value), maxHp.value)
+    hpFlaskAmount.value--
+  } else {
+    if (fpFlaskAmount.value === 0) return
+    fp.value = Math.min(fp.value + apFlaskRestoreAmount.value, maxFp.value)
+    fpFlaskAmount.value--
+  }
+}
+
+function addFlask(type: string) {
+  if (type === 'hp') {
+    hpFlaskAmount.value++
+  } else {
+    fpFlaskAmount.value++
+  }
+}
+
+function removeFlask(type: string) {
+  if (type === 'hp') {
+    hpFlaskAmount.value--
+    if (hpFlaskAmount.value < 0) hpFlaskAmount.value = 0
+  } else {
+    fpFlaskAmount.value--
+    if (fpFlaskAmount.value < 0) fpFlaskAmount.value = 0
+  }
 }
 </script>

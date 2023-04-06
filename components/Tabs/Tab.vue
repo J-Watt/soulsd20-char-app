@@ -28,8 +28,6 @@ const props = defineProps({
   }
 })
 
-console.log(props.iconName)
-
 const emit = defineEmits(['tab'])
 
 function emitTab(tabOption: string) {

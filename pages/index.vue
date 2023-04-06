@@ -3,6 +3,9 @@
     <!-- Top bar -->
     <TopBar class="border-b-2 border-gray-400"/>
     <TabOptions :active-tab="activeTab" @tab="activeTab = $event"/>
+
+    <!-- Tabs -->
+    <InventoryTab v-if="activeTab === 'inventory'" class="w-2/4"/>
   </div>
 </template>
 
