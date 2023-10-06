@@ -20,6 +20,14 @@ export default defineNuxtConfig({
     },
   },
   modules: [
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    '@nuxtjs/google-fonts'
   ],
+  googleFonts: {
+    families: {
+      'EB+Garamond': true,
+    },
+    download: true,
+    base64: false
+  }
 })

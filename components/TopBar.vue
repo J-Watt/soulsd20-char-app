@@ -12,21 +12,17 @@
         <div class="flex flex-col h-full w-full justify-between">
           <!-- name -->
           <div class="flex items-center text-4xl h-full text-white">
-            {{ playerStore.name }}
+            {{ playerStore.Name }}
           </div>
 
           <!-- char stats -->
           <div class="flex mt-2 text-white">
             <!-- left -->
-            <div class="flex flex-col space-y-1 w-full border border-b-0 p-1 text-sm">
+            <div class="flex flex-col space-y-1 border border-b-0 py-1 pl-2 pr-4 mr-2">
               <!-- gender -->
               <div class="flex justify-between items-center w-full">
                 <span>
                   Gender
-                </span>
-
-                <span>
-                  Male
                 </span>
               </div>
 
@@ -35,10 +31,6 @@
                 <span>
                   Race
                 </span>
-
-                <span>
-                  {{ playerStore.race }}
-                </span>
               </div>
 
               <!-- class -->
@@ -46,9 +38,28 @@
                 <span>
                   Class
                 </span>
+              </div>
+            </div>
 
+            <div class="flex flex-col w-full p-1 text-sm mr-2">
+              <!-- gender -->
+              <div class="flex flex-1 justify-between items-center w-full">
                 <span>
-                  {{ playerStore.class }}
+                  Male
+                </span>
+              </div>
+
+              <!-- race -->
+              <div class="flex flex-1 justify-between items-center w-full">
+                <span>
+                  {{ playerStore.Race }}
+                </span>
+              </div>
+
+              <!-- class -->
+              <div class="flex flex-1 justify-between items-center w-full">
+                <span>
+                  {{ playerStore.Class }}
                 </span>
               </div>
             </div>
@@ -64,14 +75,25 @@
       <!-- HP/AP/FP -->
       <div class="flex flex-col justify-between pt-3 w-1/3 border-r border-l">
         <div class="flex flex-col space-y-3 px-3">
-          <div class="bg-red-500 border-red-500 w-full h-6 text-center rounded">
-            {{ hp }}/{{ maxHp }}
+          <div class="relative w-full h-6 text-center rounded overflow-hidden">
+            <div class="absolute h-full bg-red-500 rounded-md" :style="`width: ${hpPercentage}%`" />
+            <div class="absolute z-10 left-2/4 top-2/4 origin-center" style="transform: translate(-50%, -50%)">
+              {{ hp }}/{{ maxHp }}
+            </div>
           </div>
-          <div class="bg-blue-500 w-full h-6 text-center rounded">
-            {{ fp }}/{{ maxFp }}
+
+          <div class="relative w-full h-6 text-center rounded overflow-hidden">
+            <div class="absolute h-full bg-blue-500 rounded-md" :style="`width: ${fpPercentage}%`" />
+            <div class="absolute z-10 left-2/4 top-2/4 origin-center" style="transform: translate(-50%, -50%)">
+              {{ fp }}/{{ maxFp }}
+            </div>
           </div>
-          <div class="bg-green-500 w-full h-6 text-center rounded">
-            {{ ap }}/{{ maxAp }}
+
+          <div class="relative w-full h-6 text-center rounded overflow-hidden">
+            <div class="absolute h-full bg-green-500 rounded-md" :style="`width: ${apPercentage}%`" />
+            <div class="absolute z-10 left-2/4 top-2/4 origin-center" style="transform: translate(-50%, -50%)">
+              {{ ap }}/{{ maxAp }}
+            </div>
           </div>
         </div>
 
@@ -191,7 +213,7 @@
 
           <div class="flex flex-col items-center justify-between border w-10">
             <div class="border-b">
-              <input v-model="calculatorDamageInput" min="0" type="number" class="bg-black text-center pl-1 w-full" />
+              <input v-model="calculatorDamageInput" min="0" type="number" class="bg-blackish text-center pl-1 w-full" />
             </div>
             <button class="w-full" @click="takeDamage(calculatorDamagePhysical)">
               <div class="w-full text-center border-b hover:bg-red-900">
@@ -287,22 +309,22 @@
 
           <div class="flex flex-col items-center justify-between border w-10">
             <div class="border-b">
-              <input v-model="inflictionCurse" min="0" type="number" class="bg-black text-center pl-1 w-full" />
+              <input v-model="inflictionCurse" min="0" type="number" class="bg-blackish text-center pl-1 w-full" />
             </div>
             <div class="border-b">
-              <input v-model="inflictionFrost" min="0" type="number" class="bg-black text-center pl-1 w-full" />
+              <input v-model="inflictionFrost" min="0" type="number" class="bg-blackish text-center pl-1 w-full" />
             </div>
             <div class="border-b">
-              <input v-model="inflictionBleed" min="0" type="number" class="bg-black text-center pl-1 w-full" />
+              <input v-model="inflictionBleed" min="0" type="number" class="bg-blackish text-center pl-1 w-full" />
             </div>
             <div class="border-b">
-              <input v-model="inflictionPoison" min="0" type="number" class="bg-black text-center pl-1 w-full" />
+              <input v-model="inflictionPoison" min="0" type="number" class="bg-blackish text-center pl-1 w-full" />
             </div>
             <div class="border-b">
-              <input v-model="inflictionToxic" min="0" type="number" class="bg-black text-center pl-1 w-full" />
+              <input v-model="inflictionToxic" min="0" type="number" class="bg-blackish text-center pl-1 w-full" />
             </div>
             <div class="border-b">
-              <input v-model="inflictionPoise" min="0" type="number" class="bg-black text-center pl-1 w-full" />
+              <input v-model="inflictionPoise" min="0" type="number" class="bg-blackish text-center pl-1 w-full" />
             </div>
           </div>
         </div>
@@ -319,6 +341,27 @@ const playerStore = usePlayerStore()
 let hp = ref(30)
 let fp = ref(8)
 let ap = ref(10)
+
+let hpPercentage = computed(()=>{
+  try {
+    return Math.max((hp.value / maxHp.value) * 100, 0)
+  } catch {}
+  return 0
+})
+
+let fpPercentage = computed(()=>{
+  try {
+    return Math.max((fp.value / maxFp.value) * 100, 0)
+  } catch {}
+  return 0
+})
+
+let apPercentage = computed(()=>{
+  try {
+    return Math.max((ap.value / maxAp.value) * 100, 0)
+  } catch {}
+  return 0
+})
 
 let maxHp = ref(30)
 let maxFp = ref(8)

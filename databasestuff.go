@@ -61,6 +61,9 @@ type Skills struct {
   CreatedAt string
   APCost int
   FPCost int
+
+  Name string
+  Description string
 }
 
 // Table --- items ---
@@ -227,8 +230,6 @@ type Accessory struct {
 }
 
 type AccessoryType
-
-type ArmorType string
 
 const (
   ACCESSORY_TYPE_RING ArmorType = "Ring"
