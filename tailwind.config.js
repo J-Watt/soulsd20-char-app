@@ -12,10 +12,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'charcoal': '#333333',
-        'blackish': '#191919',
-        'deepblue': '#292c33',
-        'concrete': '#ffffffcf',
+        charcoal: '#333333',
+        blackish: '#191919',
+        deepblue: '#292c33',
+        concrete: '#ffffffcf',
+        borderlight: '#616161',
       }
     },
   },

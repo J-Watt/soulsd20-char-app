@@ -1,12 +1,12 @@
 <template>
-  <div class="flex w-full" style="height: calc(100vh - 280px);">
-    <div class="w-2/4 border-r border-white">
-      <div class="flex flex-col items-center h-full p-4 text-white" style="max-height: 700px;">
-        <h1 class="w-full flex justify-center mb-16 text-white text-2xl font-semibold">
+  <div class="flex w-full main-tab">
+    <div class="w-2/4 border-r border-white overflow-auto">
+      <div class="flex flex-col items-center h-full text-white" style="max-height: 700px;">
+        <h1 class="sticky top-0 py-4 bg-deepblue w-full flex justify-center text-white text-2xl font-semibold z-10 border-b border-borderlight">
           Equipment
         </h1>
         
-        <div class="flex flex-1 flex-col w-full max-w-screen-md p-4 text-lg">
+        <div class="flex flex-1 flex-col w-full max-w-screen-md pt-6 px-4 pb-4 text-lg">
           <div class="flex flex-1 justify-between space-x-8 mb-16">
             <div class="flex flex-col w-1/5">
               <div class="h-2/4 p-4 mb-8 aspect-square" />

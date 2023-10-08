@@ -2,14 +2,14 @@
   <div class="px-3 text-white">
     <div class="flex">
       <!-- Character -->
-      <div class="flex items-center w-1/6">
+      <div class="flex items-center w-1/3">
         <!-- Icon box -->
         <div class="flex justify-center items-center w-32 h-32 mr-4">
           <img src="@/img/ok.jpg" class="max-h-32">
         </div>
 
         <!-- Char name / stats -->
-        <div class="flex flex-col h-full w-min justify-between">
+        <div class="flex flex-col h-full justify-between">
           <!-- name -->
           <div class="flex items-center text-4xl h-full text-white">
             {{ playerStore.Name }}
@@ -61,7 +61,7 @@
       </div>
 
       <!-- HP/AP/FP -->
-      <div class="flex w-3/6 border-r border-l">
+      <div class="flex w-1/3 border-r border-l" style="max-width: 600px;">
         <div class="flex flex-col border-r">
           <div class="flex w-full h-1/3">
             <button @click="drinkFlask('hp')" class="w-full">
@@ -109,21 +109,21 @@
 
         <div class="flex flex-col justify-between w-full px-3 py-3">
           <div class="relative w-full h-7 text-center rounded overflow-hidden">
-            <div class="absolute h-full bg-red-500 rounded-md" :style="`width: ${hpPercentage}%`" />
+            <div class="absolute h-full bg-[#790000] rounded-md" :style="`width: ${hpPercentage}%`" />
             <div class="absolute z-10 left-2/4 top-2/4 origin-center" style="transform: translate(-50%, -50%)">
               {{ hp }}/{{ maxHp }}
             </div>
           </div>
 
           <div class="relative w-full h-7 text-center rounded overflow-hidden">
-            <div class="absolute h-full bg-blue-500 rounded-md" :style="`width: ${fpPercentage}%`" />
+            <div class="absolute h-full bg-[#295A72] rounded-md" :style="`width: ${fpPercentage}%`" />
             <div class="absolute z-10 left-2/4 top-2/4 origin-center" style="transform: translate(-50%, -50%)">
               {{ fp }}/{{ maxFp }}
             </div>
           </div>
 
           <div class="relative w-full h-7 text-center rounded overflow-hidden">
-            <div class="absolute h-full bg-green-500 rounded-md" :style="`width: ${apPercentage}%`" />
+            <div class="absolute h-full bg-[#2A6B21] rounded-md" :style="`width: ${apPercentage}%`" />
             <div class="absolute z-10 left-2/4 top-2/4 origin-center" style="transform: translate(-50%, -50%)">
               {{ ap }}/{{ maxAp }}
             </div>
@@ -132,9 +132,9 @@
       </div>
 
       <!-- Resistances & Calc -->
-      <div class="flex justify-between py-3 text-sm" style="min-width: fit-content; max-width: 100%;">
+      <div class="flex justify-between w-full py-3 text-sm" style="max-width: 1000px;">
         <!-- Damage calculator -->
-        <div class="flex justify-between w-4/6 pl-3">
+        <div class="flex justify-between w-4/6 pl-3" style="max-width: 670px">
           <div class="flex flex-col h-full w-full">
             <div class="flex justify-between mb-3">
               <h1 class="text-lg text-white mr-3">
@@ -146,7 +146,7 @@
                   Initial damage
                 </span>
 
-                <input v-model="calculatorDamageInput" min="0" type="number" class="bg-white rounded-sm text-black text-center w-10" />
+                <input v-model="calculatorDamageInput" min="0" type="number" class="bg-white rounded-sm text-charcoal text-center w-10" />
               </div>
             </div>
 
@@ -158,7 +158,7 @@
                   Resistances
                 </div>
 
-                <div class="flex justify-end items-center text-right h-1/3">
+                <div class="flex justify-end items-end text-right h-1/3">
                   Dmg taken
                 </div>
               </div>
@@ -187,35 +187,35 @@
                 </div>
 
                 <div class="flex justify-between border rounded-sm">
-                  <div class="flex justify-center items-center border-r border-black w-1/5 h-5 bg-white text-black">
+                  <div class="flex justify-center items-center border-r border-black w-1/5 h-5 bg-white text-charcoal">
                     {{ resistancePhysical }}
                     <span v-if="flatResistancePhysical" class="ml-1">
                       (- {{ flatResistancePhysical }})
                     </span>
                   </div>
 
-                  <div  class="flex justify-center items-center border-r border-black w-1/5 h-5 bg-white text-black">
+                  <div  class="flex justify-center items-center border-r border-black w-1/5 h-5 bg-white text-charcoal">
                     {{ resistanceMagic }}
                     <span v-if="flatResistanceMagic" class="ml-1">
                       (- {{ flatResistanceMagic }})
                     </span>
                   </div>
                   
-                  <div  class="flex justify-center items-center border-r border-black w-1/5 h-5 bg-white text-black">
+                  <div  class="flex justify-center items-center border-r border-black w-1/5 h-5 bg-white text-charcoal">
                     {{ resistanceFire }}
                     <span v-if="flatResistanceFire" class="ml-1">
                       (- {{ flatResistanceFire }})
                     </span>
                   </div>
                   
-                  <div  class="flex justify-center items-center border-r border-black w-1/5 h-5 bg-white text-black">
+                  <div  class="flex justify-center items-center border-r border-black w-1/5 h-5 bg-white text-charcoal">
                     {{ resistanceLightning }}
                     <span v-if="flatResistanceLightning" class="ml-1">
                       (- {{ flatResistanceLightning }})
                     </span>
                   </div>
                   
-                  <div  class="flex justify-center items-center w-1/5 h-5 bg-white text-black">
+                  <div  class="flex justify-center items-center w-1/5 h-5 bg-white text-charcoal">
                     {{ resistanceDark }}
                     <span v-if="flatResistanceDark" class="ml-1">
                       (- {{ flatResistanceDark }})
@@ -225,31 +225,31 @@
 
                 <div class="flex justify-between border rounded-sm">
                   <button class="w-full" @click="takeDamage(calculatorDamagePhysical)">
-                    <div class="w-full text-center border-r border-black hover:bg-red-100 bg-white text-black">
+                    <div class="w-full text-center border-r border-black hover:bg-red-100 bg-white text-charcoal">
                       <span v-if="calculatorDamagePhysical > 0">-</span>
                       {{ calculatorDamagePhysical }}
                     </div>
                   </button>
                   <button class="w-full" @click="takeDamage(calculatorDamageMagic)">
-                    <div class="w-full text-center border-r border-black hover:bg-red-100 bg-white text-black">
+                    <div class="w-full text-center border-r border-black hover:bg-red-100 bg-white text-charcoal">
                       <span v-if="calculatorDamageMagic > 0">-</span>
                       {{ calculatorDamageMagic }}
                     </div>
                   </button>
                   <button class="w-full" @click="takeDamage(calculatorDamageFire)">
-                    <div class="w-full text-center border-r border-black hover:bg-red-100 bg-white text-black">
+                    <div class="w-full text-center border-r border-black hover:bg-red-100 bg-white text-charcoal">
                       <span v-if="calculatorDamageFire > 0">-</span>
                       {{ calculatorDamageFire }}
                     </div>
                   </button>
                   <button class="w-full" @click="takeDamage(calculatorDamageLightning)">
-                    <div class="w-full text-center border-r border-black hover:bg-red-100 bg-white text-black">
+                    <div class="w-full text-center border-r border-black hover:bg-red-100 bg-white text-charcoal">
                       <span v-if="calculatorDamageLightning > 0">-</span>
                       {{ calculatorDamageLightning }}
                     </div>
                   </button>
                   <button class="w-full" @click="takeDamage(calculatorDamageDark)">
-                    <div class="w-full text-center hover:bg-red-100 bg-white text-black">
+                    <div class="w-full text-center hover:bg-red-100 bg-white text-charcoal">
                       <span v-if="calculatorDamageDark > 0">-</span>
                       {{ calculatorDamageDark }}
                     </div>
@@ -261,8 +261,8 @@
         </div>
 
         <!-- Status Resistances -->
-        <div class="flex w-max">
-          <div class="flex justify-between pl-12">
+        <div class="flex flex-1" style="max-width: 380px;">
+          <div class="flex justify-between pl-12 w-full">
             <h1 class="text-lg mr-8">
               Statuses
             </h1>

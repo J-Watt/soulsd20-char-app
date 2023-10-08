@@ -1,11 +1,11 @@
 <template>
-  <div class="flex items-center w-full h-5 rounded-sm bg-white text-black overflow-hidden">
+  <div class="flex items-center w-full h-5 rounded-sm bg-white text-charcoal overflow-hidden">
     <div class="flex items-center border-r border-black">
       <button class="flex items-center justify-center bg-blue-900 border-b text-white w-4" @click="decreaseStatus">
         -
       </button>
 
-      <input v-model="inflictionAmt" min="0" type="number" class="text-center px-1 w-6 text-black" />
+      <input v-model="inflictionAmt" min="0" type="number" class="text-center px-1 w-6 text-charcoal" />
 
       <button class="flex items-center justify-center bg-blue-900 border-b text-white w-4" @click="increaseStatus">
         +

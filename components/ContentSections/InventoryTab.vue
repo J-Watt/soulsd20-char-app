@@ -1,67 +1,40 @@
 <template>
-  <div class="flex w-full overflow-hidden inv-tab" style="height: calc(100vh - 280px);">
-    <div class="flex flex-col w-2/4 h-full pt-4 border-r border-white overflow-auto">
-      <div>
-        <h1 class="w-full flex justify-center mb-4 text-white text-2xl font-semibold">
-          Inventory
-        </h1>
-    
-        <div class="flex justify-between bg-white rounded-md overflow-hidden">
-          <button class="text-center border-r border-black flex-1" :class="activeTab === 'all' && 'bg-[#2a5573] text-white'" @click="activeTab = 'all'">
-            <div class="p-1">
-              All
-            </div>
-          </button>
-    
-          <button class="text-center border-r border-black flex-1" :class="activeTab === 'tools' && 'bg-[#2a5573] text-white'" @click="activeTab = 'tools'">
-            <div class="p-1">
-              Items (tools)
-            </div>
-          </button>
-    
-          <button class="text-center border-r border-black flex-1" :class="activeTab === 'misc' && 'bg-[#2a5573] text-white'" @click="activeTab = 'misc'">
-            <div class="p-1">
-              Items (misc.)
-            </div>
-          </button>
-    
-          <button class="text-center border-r border-black flex-1" :class="activeTab === 'weapon' && 'bg-[#2a5573] text-white'" @click="activeTab = 'weapon'">
-            <div class="p-1">
-              Weapons
-            </div>
-          </button>
-    
-          <button class="text-center border-r border-black flex-1" :class="activeTab === 'armor' && 'bg-[#2a5573] text-white'" @click="activeTab = 'armor'">
-            <div class="p-1">
-              Armor
-            </div>
-          </button>
-    
-          <button class="text-center border-r border-black flex-1" :class="activeTab === 'ring' && 'bg-[#2a5573] text-white'" @click="activeTab = 'ring'">
-            <div class="p-1">
-              Rings/Adornments
-            </div>
-          </button>
-    
-          <button class="text-center flex-1" :class="activeTab === 'artifact' && 'bg-[#2a5573] text-white'" @click="activeTab = 'artifact'">
-            <div class="p-1">
-              Artifacts
-            </div>
-          </button>
-        </div>
+  <div class="flex w-full overflow-hidden main-tab">
+    <div class="flex flex-col w-2/4 border-r border-white">
+      <div class="flex justify-between mt-4 bg-white rounded-md z-20">
+        <button v-for="tab in typeTabs" :key="'tab' + tab.Identifier" class="text-center border-r border-black flex-1" :class="activeTab === tab.Identifier && 'bg-[#2a5573] text-white'" @click="activeTab = tab.Identifier">
+          <div class="p-1">
+            {{ tab.Name }}
+          </div>
+        </button>
       </div>
-    
-      <div class="relative flex flex-col h-full mb-4">
-        <div class="w-full  text-xs px-4 border-b">
+
+      <div class="overflow-auto">
+        <div class="sticky top-0 flex flex-col bg-deepblue py-4 border-b border-borderlight">
+          <h1 class="w-full flex justify-center text-white text-2xl font-semibold">
+            Inventory
+          </h1>
+        </div>
+  
+      
+        <div class="w-full  text-xs px-4">
           <div v-if="inventoryItems.length === 0" class="flex justify-center items-center w-full text-white text-2xl" style="min-height: 184px;">
             You have no {{ itemCategoryDescription }} in your inventory
           </div>
-          <div v-else class="flex flex-wrap w-full inv mt-6 pb-6">
+          <div v-else class="flex flex-wrap w-full inv py-4">
             <div v-for="item in inventoryItems" :key="item.Name" class="flex flex-col justify-between items-center text-center relative m-3 w-28 h-28 rounded-sm overflow-hidden bg-white">
               <div class="flex items-center h-full font-bold text-lg px-1">
                 {{ item.Name }}
               </div>
       
+              <span class="flex items-center justify-center absolute top-0 left-0 bg-blue-900 text-white font-bold w-4 h-4">
+                {{ item.Quantity }}
+              </span>
+    
+              <button class="flex items-center justify-center absolute top-0 right-0 rounded w-4 h-4" @click="deleteItem(item)">
+                X
+              </button>
+    
               <div class="flex absolute bottom-0 w-full">
                 <button class="flex items-center justify-center bg-blue-900 border-r text-white w-2/4 h-4" @click="decreaseItemQuantity(item)">
                   -
@@ -70,33 +43,27 @@
                   +
                 </button>
               </div>
-      
-              <span class="flex items-center justify-center absolute top-0 left-0 bg-blue-900 rounded-br-sm text-white font-bold rounded-bl-sm w-4 h-4">
-                {{ item.Quantity }}
-              </span>
-
-              <button class="flex items-center justify-center absolute top-0 right-0 rounded-bl-sm w-4 h-4" @click="deleteItem(item)">
-                X
-              </button>
             </div>
           </div>
         </div>
     
-        <div class="px-4">
-          <h1 class="w-full flex justify-center my-4 text-white text-2xl font-semibold">
-            Items
-          </h1>
-      
+        <h1 class="sticky top-0 py-4 bg-deepblue w-full flex justify-center text-white text-2xl font-semibold border-b border-t border-borderlight z-10">
+          Items
+        </h1>
+    
+        <div class="p-4">
           <div class="flex flex-wrap w-full text-xs">
-            <div v-for="item in allItems" :key="'item-' + item.Name" class="flex flex-col justify-between items-center text-center relative m-3 w-28 h-28 rounded-sm bg-white overflow-hidden">
-              <div class="flex items-center h-full text-lg px-1">
-                {{ item.Name }}
+            <div v-for="item in allItems" :key="'item-' + item.Name" class="flex flex-col justify-between items-center text-center relative m-3 w-28 h-28 rounded bg-white overflow-hidden">
+              <div class="flex items-center justify-center flex-1 text-lg p-1 overflow-hidden text-ellipsis" :class="item.Name.length > 28 && 'text-base'" style="max-height: 96px; width: 112px;">
+                <div class="overflow-hidden text-ellipsis block text-center max-h-full">
+                  {{ item.Name }}
+                </div>
               </div>
               
-              <button v-if="itemNotInInventory(item)" class="w-full h-4 rounded-bl-sm text-white text-xs bg-blue-900" @click="addItem(item)">
+              <button v-if="itemNotInInventory(item)" class="w-full h-4 text-white text-xs bg-blue-900" @click="addItem(item)">
                 Add
               </button>
-
+    
               <span v-else class="w-full h-4 rounded-bl-sm text-white text-xs bg-charcoal">
                 In inventory
               </span>
@@ -110,10 +77,6 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="w-2/4 h-full p-4">
-
     </div>
   </div>
 </template>
@@ -140,6 +103,16 @@ const itemCategoryDescription = computed(()=>{
 const inventoryItems = computed(()=>{
   return store.Inventory.filter(i => i.Category === activeTab.value || activeTab.value === 'all')
 })
+
+const typeTabs = [
+  { Name: 'All', Identifier: 'all', },
+  { Name: 'Items', Identifier: 'tools', },
+  { Name: 'Items', Identifier: 'misc', },
+  { Name: 'Weapons', Identifier: 'weapon', },
+  { Name: 'Armor', Identifier: 'armor', },
+  { Name: 'Rings', Identifier: 'ring', },
+  { Name: 'Artifacts', Identifier: 'artifact', },
+]
 
 function createItem() {
   compendiumStore.createItem({
@@ -170,6 +143,3 @@ function itemNotInInventory(item: Item) {
   if (!store.Inventory.find(i => i.UUID === item.UUID)) return true
 }
 </script>
-
-<style scoped lang="less">
-</style>

@@ -1,11 +1,11 @@
 <template>
-  <div class="flex w-full" style="min-height: calc(100vh - 280px);">
-    <div class="w-2/4 p-4 border-r border-white">
-      <h1 class="w-full flex justify-center mb-4 text-white text-2xl font-semibold">
+  <div class="flex w-full main-tab">
+    <div class="w-2/4 pb-4 border-r border-white overflow-auto">
+      <h1 class="sticky top-0 py-4 bg-deepblue w-full flex justify-center text-white text-2xl font-semibold z-10 border-b border-borderlight">
         Character
       </h1>
   
-      <div class="w-full">
+      <div class="w-full p-4">
         <div class="flex justify-around space-x-8">
           <div class="flex flex-col w-2/4">
             <h2 class="pb-4 text-lg font-bold text-white text-center">

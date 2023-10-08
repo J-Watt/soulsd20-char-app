@@ -6,9 +6,9 @@ type User struct {
   UUID string
   CreatedAt time.Time
   Email string
-  FirstName string ***
-  LastName string ***
-  PasswordHash string //
+  FirstName string
+  LastName string
+  PasswordHash string
   Campaigns []string // slice of campaign uuids
   CampaignOwnerships []string // slice of campaign uuids
   Characters []string
@@ -18,110 +18,123 @@ type Campaign struct {
   UUID string
   OwnedBy []string
   Users []string
-  Items []string
-  Armors []string
-  Weapons []string
-  Accessories []string
-  Spells []string
 }
 
-type DestinyFeat struct {
+type AttunedAction struct {
   UUID string
+  CampaignUUIDs string[]
   Name string
-  Cost int
   Description string
-}
+  ActionType string // Spell / Skill
 
-type WeaponFeat struct {
-  UUID string
-  Level int
-  Name string
-  Description string
-}
+  IntRequirement int
+  FaiRequirement int
 
-type Spell struct {
-  UUID string
-  Name string
-  Description string
-  Cost int
+  AttunementCost int
   APCost int
   FPCost int
-  Range string
+
+  IsSlow bool
+  SpellCategory string
+  UsageType string
+  BaseDmg string
+  RangeInfo string
   Duration string
-  ChargedRelationUUID string
 
-  ChargedSpell Spell
-}
-
-// Table --- items ---
-type Item struct {
-  UUID string
-  CreatedAt time.Time
-  CreatedBy string // UUID of user
-  Name string
-  Description string
-
-  ItemType ItemType
-}
-
-type ItemType string
-
-const (
-  ITEM_TYPE_TOOL ItemType = "Tool"
-  ITEM_TYPE_MISC ItemType = "Misc"
-)
-
-type ItemEntry struct {
-  UUID string
-  UpdatedAt time.Time // To be used for sort by date added/updated
-  Quantity int
+  ChargedSpell string // uuid
 }
 
 // Table --- characters ---
 type Character struct {
   UUID string
+  CreatedAt time.Time
   UserUUID string
   Name string
   Gender string
   Race string
-  Class string
+  Background string
   Undying int
   Souls int
   Level int
+
+  UserInputValues UserInputValues
+
   Inventory []Item
-  AttunementSlots int
-  AttunedSpells []string
-  FateSlots int
-  FatesChosen []string
+  Equipment Equipment
+  LearnedAttunedActions []string
+  AttunedActions []string
+  DestinyFeatSlots int
+  DestinyFeats []string
   CharacterStats CharacterStats
   AvatarURL string
 }
 
-type Fate struct {
-  UUID string
-  Cost int
-  Name string
-  Description string
+type Equipment struct {
+  IsTwoHanding bool
+  MainHand Item
+  OffHand Item
+  Armor Item
+  Artifact Item
+  Ring1 Item
+  Ring2 Item
+  Ring3 Item
+  Ring4 Item
 }
 
-// Table --- character_stats ---
-type CharacterStats struct {
-  Resistances Resistances
-  Stats Stats
-  Skills Skills
-  Knowledge Knowledge
-  Spells Spells
-  WeaponProficiencies WeaponProficiencies
+type UserInputValues struct {
+  Exhaustion int
+
+  TotalDodges int
+  CurrentDodges int
+
+  CurrentHP int
+  CurrentFP int
+  CurrentAP int
+
+  MaxHPBonus int
+  MaxFPBonus int
+  MaxAPBonus int
+
+  HpFlask int
+  FpFlask int
+  FlaskLevel int
+
+  AttunementSlots int
+
+  DestinyFeatUsages map[string]int
+  WeaponFeatUsages map[string]int
+
+  CurrentStatuses Statuses
+  BonusStatuses Statuses
+  BonusResistances Resistances
+  Conditions Conditions
 }
 
-type Resistances struct {
+type Conditions struct {
+  ImpairedVision bool
+  Deaf bool
+  ArmFracture bool
+  LegFracture bool
+  Grappled bool
+  Restrained bool
+  Prone bool
+  Dazed bool
+  LockedUp bool
+  Staggered bool
+  Frenzied bool
+  Berzerk bool
+}
+
+type Statuses struct {
   Curse int
   Frost int
   Bleed int
   Poison int
   Toxic int
   Poise int
+}
 
+type Resistances struct {
   Physical int
   Magic int
   Fire int
@@ -133,6 +146,49 @@ type Resistances struct {
   FlatFire int
   FlatLightning int
   FlatDark int
+}
+
+type DestinyFeat struct{
+  UUID string
+  Name string
+  Cost int
+  Description string
+  
+  UsageFormulaInfo UsageFormulaInfo
+
+  Bonuses Bonuses
+}
+
+type WeaponFeat struct {
+  UUID string
+  Name string
+  Level int
+  WeaponType string
+  Description string
+
+  UsageFormulaInfo UsageFormulaInfo
+
+  Bonuses Bonuses
+}
+
+type UsageFormulaInfo struct {
+  UsedStat string
+  UsedSkill string
+  UseLevel bool
+
+  BaseAmt int
+  ModifierAmount int
+}
+
+type CharacterStats struct {
+  BaseHP int
+  RolledHP int[]
+  BaseStats Stats
+  LeveledStats Stats
+  Skills Skills
+  Knowledge Knowledge
+  AttunedActions AttunedAction[]
+  WeaponProficiencies WeaponProficiencies
 }
 
 type Stats struct {
@@ -164,29 +220,32 @@ type Knowledge struct {
 }
 
 type WeaponProficiencies struct {
-  Spear: int
-  Shield: int
-  Gun: int
-  Dagger: int
-  Whip: int
-  Hammer: int
-  StraightSword: int
-  Katana: int
-  Greatsword: int
-  Reaper: int
-  Axe: int
-  Fist: int
-  Bow: int
-  Halberd: int
-  Twinblade: int
-  Sorcery: int
-  Miracles: int
+  Spear int
+  Shield int
+  Gun int
+  Dagger int
+  Whip int
+  Hammer int
+  StraightSword int
+  Katana int
+  Greatsword int
+  Reaper int
+  Axe int
+  Fist int
+  Bow int
+  Halberd int
+  Twinblade int
+  Sorcery int
+  Miracles int
 }
 
 // Table --- inventories ---
 type Inventory struct {
-  CharacterUUID string
-  Items []ItemEntry // slice of item uuids
+  Items Item[]
+  Weapons Weapon[]
+  Armor Armor[]
+  Rings Ring[]
+  Artifacts Artifact[]
 }
 
 // Table --- equipment ---
@@ -195,16 +254,44 @@ type Equipment struct {
   Mainhand Weapon
   Offhand Weapon
   Armor Armor
-  Artifact Accessory
-  Ring1 Accessory
-  Ring2 Accessory
-  Ring3 Accessory
-  Ring4 Accessory
+  Artifact Artifact
+  Ring1 Ring
+  Ring2 Ring
+  Ring3 Ring
+  Ring4 Ring
 }
+
+// Table --- items ---
+type Item struct {
+  UUID string
+  CreatedAt time.Time
+  CreatedBy string // UUID of user
+  CampaignUUIDs string[]
+  
+  Name string
+  Description string
+  Price map[string]int
+
+  ItemType ItemType
+}
+
+type ItemType string
+
+const (
+  ITEM_TYPE_TOOL ItemType = "Tool"
+  ITEM_TYPE_MISC ItemType = "Misc"
+)
 
 // Table --- weapons ---
 type Weapon struct {
   UUID string
+  CreatedAt time.Time
+  CreatedBy string // UUID of user
+  CampaignUUIDs string[]
+
+  Name string
+  Description string
+  Price map[string]int
   Identifier string
   Damages []Damage
   Durability int
@@ -231,10 +318,15 @@ const (
 // Table --- armors ---
 type Armor struct {
   UUID string
+  CreatedAt time.Time
+  CreatedBy string // UUID of user
+  CampaignUUIDs string[]
+
   Name string
   Description string
+  Price map[string]int
   ArmorType ArmorType
-  StatBonuses
+  Bonuses Bonuses
 }
 
 type ArmorType string
@@ -246,18 +338,44 @@ const (
   ARMOR_TYPE_HEAVY = "Heavy"
 )
 
-type Accessory struct {
+type Ring struct {
   UUID string
+  CreatedAt time.Time
+  CreatedBy string // UUID of user
+  CampaignUUIDs string[]
+
   Name string
-  AccType AccessoryType
   Description string
-  StatBonuses
+  Tier int
+  Price map[string]int
+  Bonuses Bonuses
 }
 
-type AccessoryType
+type Artifact struct {
+  UUID string
+  CreatedAt time.Time
+  CreatedBy string // UUID of user
+  CampaignUUIDs string[]
 
-const (
-  ACCESSORY_TYPE_RING ArmorType = "Ring"
-  ACCESSORY_TYPE_ADORMNENT ArmorType = "Adornment"
-  ACCESSORY_TYPE_ARTIFACT = "Artifact"
-)
+  Name string
+  Description string
+  Bonuses Bonuses
+}
+
+type Bonuses struct {
+  Stats Stats
+  Skills Skills
+  Knowledge Knowledge
+  Resistances Resistances
+  Statuses Statuses
+
+  HP int
+  FP int
+  AP int
+
+  MaxHP int
+  MaxFP int
+  MaxAP int
+
+  AttunementSlots int
+}

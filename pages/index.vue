@@ -21,3 +21,33 @@ definePageMeta({
 const activeTab = ref('character')
 const tabOptions = ['character', 'inventory', 'equipment', 'spells', 'feats', 'compendium']
 </script>
+
+<style lang="less">
+.main-tab {
+  height: calc(100vh - 280px);
+  overflow: hidden;
+
+  scrollbar-width: normal;
+  scrollbar-color: #777 #555;
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #7775;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #777;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: #5555;
+  }
+  
+  ::-webkit-scrollbar-track:hover {
+    background-color: #555;
+  }
+}
+</style>

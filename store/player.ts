@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { useCompendiumStore } from '~~/store/compendium'
 import { 
   CharacterStats,
-  Fate,
+  DestinyFeat,
   Item,
   Spell,
   WeaponFeat,
@@ -22,8 +22,8 @@ type RootState = {
   Inventory: Item[],
   AttunementSlots: number;
   AttunedSpells: Spell[];
-  FateSlots: number;
-  FatesChosen: Fate[];
+  DestinyFeatSlots: number;
+  DestinyFeats: DestinyFeat[];
   WeaponFeats: WeaponFeat[];
   CharacterStats: CharacterStats;
   Spells: Spell[];
@@ -45,8 +45,8 @@ export const usePlayerStore = defineStore({
     Inventory: [],
     AttunementSlots: 12,
     AttunedSpells: [],
-    FateSlots: 0,
-    FatesChosen: [],
+    DestinyFeatSlots: 0,
+    DestinyFeats: [],
     WeaponFeats: [],
     CharacterStats: {
       Resistances: {
@@ -122,7 +122,6 @@ export const usePlayerStore = defineStore({
     attuneSpell(spellUUID: string) {
       const compendiumStore = useCompendiumStore()
       const spell = compendiumStore.Spells.find(i => i.UUID === spellUUID)
-      console.log(spell)
       if (!spell) return
       this.AttunedSpells.push(JSON.parse(JSON.stringify(spell)))
     },

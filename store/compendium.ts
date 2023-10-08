@@ -101,6 +101,342 @@ const destinyFeats = [
     Name: 'Athelete',
     Description: 'Athletics +1, run really fast and stuff, etc.',
   },
+  { 
+    UUID: 'Accurate',
+    Cost: 1,
+    Name: 'Accurate',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Advanced Legwork',
+    Cost: 1,
+    Name: 'Advanced Legwork',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Armorer',
+    Cost: 1,
+    Name: 'Armorer',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Artisan of Physic',
+    Cost: 1,
+    Name: 'Artisan of Physic',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Athlete',
+    Cost: 1,
+    Name: 'Athlete',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Bloodthirsty',
+    Cost: 1,
+    Name: 'Bloodthirsty',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Companion',
+    Cost: 1,
+    Name: 'Companion',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Cook',
+    Cost: 1,
+    Name: 'Cook',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Craftsperson',
+    Cost: 1,
+    Name: 'Craftsperson',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Critical Rolls',
+    Cost: 1,
+    Name: 'Critical Rolls',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Cultvate Mass',
+    Cost: 1,
+    Name: 'Cultvate Mass',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Delay Death',
+    Cost: 1,
+    Name: 'Delay Death',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Deliberate Items',
+    Cost: 1,
+    Name: 'Deliberate Items',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Desperation Dive',
+    Cost: 1,
+    Name: 'Desperation Dive',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Durable',
+    Cost: 1,
+    Name: 'Durable',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Elemental',
+    Cost: 1,
+    Name: 'Elemental',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Fast Roll',
+    Cost: 1,
+    Name: 'Fast Roll',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Fire Clairvoyant',
+    Cost: 1,
+    Name: 'Fire Clairvoyant',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Focus Armor',
+    Cost: 1,
+    Name: 'Focus Armor',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Free of Burden',
+    Cost: 1,
+    Name: 'Free of Burden',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Haggler',
+    Cost: 1,
+    Name: 'Haggler',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Hidden Bobby',
+    Cost: 1,
+    Name: 'Hidden Bobby',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Human Skill',
+    Cost: 1,
+    Name: 'Human Skill',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Innate Spell',
+    Cost: 1,
+    Name: 'Innate Spell',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Library of Knowledge (Skills)',
+    Cost: 1,
+    Name: 'Library of Knowledge (Skills)',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Library of Knowledge (Spells)',
+    Cost: 1,
+    Name: 'Library of Knowledge (Spells)',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Limitless',
+    Cost: 1,
+    Name: 'Limitless',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Linguist',
+    Cost: 1,
+    Name: 'Linguist',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Lord of Undeath',
+    Cost: 1,
+    Name: 'Lord of Undeath',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Lucky',
+    Cost: 1,
+    Name: 'Lucky',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Mage Slayer',
+    Cost: 1,
+    Name: 'Mage Slayer',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Mobile',
+    Cost: 1,
+    Name: 'Mobile',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Multi Proficient',
+    Cost: 1,
+    Name: 'Multi Proficient',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Observant',
+    Cost: 1,
+    Name: 'Observant',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Power Funnel',
+    Cost: 1,
+    Name: 'Power Funnel',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Prosthetic Limb',
+    Cost: 1,
+    Name: 'Prosthetic Limb',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Protege 1',
+    Cost: 1,
+    Name: 'Protege 1',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Protege 2',
+    Cost: 1,
+    Name: 'Protege 2',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Protege 3',
+    Cost: 1,
+    Name: 'Protege 3',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Purity',
+    Cost: 1,
+    Name: 'Purity',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Quick Hands',
+    Cost: 1,
+    Name: 'Quick Hands',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Reassignment',
+    Cost: 1,
+    Name: 'Reassignment',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Ritual Caster',
+    Cost: 1,
+    Name: 'Ritual Caster',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Skill Monkey',
+    Cost: 1,
+    Name: 'Skill Monkey',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Skilled Undead',
+    Cost: 1,
+    Name: 'Skilled Undead',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Spellsword',
+    Cost: 1,
+    Name: 'Spellsword',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Stance Change',
+    Cost: 1,
+    Name: 'Stance Change',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Story Teller',
+    Cost: 1,
+    Name: 'Story Teller',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Tactical Mind',
+    Cost: 1,
+    Name: 'Tactical Mind',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Toxicology',
+    Cost: 1,
+    Name: 'Toxicology',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'True to Form',
+    Cost: 1,
+    Name: 'True to Form',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Voice of Inspiration',
+    Cost: 1,
+    Name: 'Voice of Inspiration',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Wanderer',
+    Cost: 1,
+    Name: 'Wanderer',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Weapon Master',
+    Cost: 1,
+    Name: 'Weapon Master',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Weapon Sculptor',
+    Cost: 1,
+    Name: 'Weapon Sculptor',
+    Description: 'This is the feat description'
+  },
+  { 
+    UUID: 'Worthless Husk',
+    Cost: 1,
+    Name: 'Worthless Husk',
+    Description: 'This is the feat description'
+  },
 ]
 
 const items = [
@@ -116,9 +452,9 @@ const items = [
   { Name: "Light bugs", Category: 'misc', Description: "A small container of bugs which glow brightly during the daytime regardless of it they are exposed to daylight. Can be fitted with a small window and attached to the waist to provide light in dark areas during the day, without needing to be held in hand. Lights up an area of 10 feet of bright light and 10 feet of dim light around the container.", Quantity: 0, UUID: 'Light bugs' },
   { Name: "Purging stone", Category: 'misc', Description: "An extremely rare one time use item. Hold against bare skin to reduce a persons undying stacks to zero, and if they are fully undead, restore their sanity while you do so (bringing them back to \"life\").", Quantity: 0, UUID: 'Purging stone' },
   { Name: "Blessed mushroom", Category: 'misc', Description: "Consume to heal 1d4 HP.", Quantity: 0, UUID: 'Blessed mushroom' },
-  { Name: "Hangfruit meat/Glowroot meat", Category: 'misc', Description: "Consume to heal 1d4 HP on the start of your turns for the next four turns. Spoils after three days.", Quantity: 0, UUID: 'Hangfruit meat/Glowroot meat' },
-  { Name: "Dried Hangfruit meat/Glowroot meat", Category: 'misc', Description: "Consume to heal 1d2 HP on the start of your turns for the next four turns. Does not spoil.", Quantity: 0, UUID: 'Dried Hangfruit meat/Glowroot meat' },
-  { Name: "Crimson water/Moss skins", Category: 'misc', Description: "Consume to restore 1d4 FP.", Quantity: 0, UUID: 'Crimson water/Moss skins' },
+  { Name: "Hangfruit meat / Glowroot meat", Category: 'misc', Description: "Consume to heal 1d4 HP on the start of your turns for the next four turns. Spoils after three days.", Quantity: 0, UUID: 'Hangfruit meat/Glowroot meat' },
+  { Name: "Dried Hangfruit meat / Glowroot meat", Category: 'misc', Description: "Consume to heal 1d2 HP on the start of your turns for the next four turns. Does not spoil.", Quantity: 0, UUID: 'Dried Hangfruit meat/Glowroot meat' },
+  { Name: "Crimson water / Moss skins", Category: 'misc', Description: "Consume to restore 1d4 FP.", Quantity: 0, UUID: 'Crimson water/Moss skins' },
   { Name: "Dried Greatfeather", Category: 'misc', Description: "Crush and press against your forehead to restore 1d4 FP.", Quantity: 0, UUID: 'Dried Greatfeather' },
   { Name: "Blood vial", Category: 'misc', Description: "Consume to restore 1d6 HP and 1d4 FP.", Quantity: 0, UUID: 'Blood vial' },
   { Name: "Bellowing snowbloom", Category: 'misc', Description: "Consume to restore 1d6 HP, but take 1d4 frost build up.", Quantity: 0, UUID: 'Bellowing snowbloom' },

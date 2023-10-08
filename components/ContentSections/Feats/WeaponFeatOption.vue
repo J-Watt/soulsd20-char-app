@@ -2,11 +2,11 @@
   <div class="flex items-center w-full rounded-sm text-lg font-bold bg-white overflow-hidden">
     <div class="flex items-center border-r border-black">
       <div class="flex flex-col">
-        <button class="flex items-center justify-center bg-blue-900 border-b text-white w-5 h-5" @click="increaseWeaponProficiency(identifier)">
+        <button class="flex items-center justify-center bg-blue-900 border-b text-sm text-white w-5 h-4" @click="increaseWeaponProficiency(identifier)">
           +
         </button>
 
-        <button class="flex items-center justify-center bg-blue-900 text-white w-5 h-5"  @click="decreaseWeaponProficiency(identifier)">
+        <button class="flex items-center justify-center bg-blue-900 text-sm text-white w-5 h-5"  @click="decreaseWeaponProficiency(identifier)">
           -
         </button>
       </div>
