@@ -23,26 +23,24 @@ type Campaign struct {
   Weapons []string
   Accessories []string
   Spells []string
-  Skills []string
 }
 
-type FeatsOfDestiny struct {
+type DestinyFeat struct {
   UUID string
   Name string
   Cost int
   Description string
 }
 
-type WeaponFeats struct {
+type WeaponFeat struct {
   UUID string
+  Level int
   Name string
   Description string
 }
 
 type Spell struct {
   UUID string
-  CreatedBy string
-  CreatedAt string
   Name string
   Description string
   Cost int
@@ -53,17 +51,6 @@ type Spell struct {
   ChargedRelationUUID string
 
   ChargedSpell Spell
-}
-
-type Skills struct {
-  UUID string
-  CreatedBy string
-  CreatedAt string
-  APCost int
-  FPCost int
-
-  Name string
-  Description string
 }
 
 // Table --- items ---
@@ -101,12 +88,20 @@ type Character struct {
   Undying int
   Souls int
   Level int
+  Inventory []Item
   AttunementSlots int
-  AttunedSkillsSpells []string
+  AttunedSpells []string
   FateSlots int
   FatesChosen []string
   CharacterStats CharacterStats
   AvatarURL string
+}
+
+type Fate struct {
+  UUID string
+  Cost int
+  Name string
+  Description string
 }
 
 // Table --- character_stats ---
@@ -114,6 +109,8 @@ type CharacterStats struct {
   Resistances Resistances
   Stats Stats
   Skills Skills
+  Knowledge Knowledge
+  Spells Spells
   WeaponProficiencies WeaponProficiencies
 }
 
@@ -138,24 +135,52 @@ type Resistances struct {
   FlatDark int
 }
 
+type Stats struct {
+  Vitality int
+  Endurance int
+  Strength int
+  Dexterity int
+  Attunement int
+  Intelligence int
+  Faith int
+}
+
+type Skills struct {
+  Athletics int
+  Acrobatics int
+  Perception int
+  FireKeeping int
+  Sanity int
+  Stealth int
+  Precision int
+  Diplomacy int
+}
+
+type Knowledge struct {
+  Magics int
+  WorldHistory int
+  Monsters int
+  Cosmic int
+}
+
 type WeaponProficiencies struct {
-  Spear	
-  Shield	
-  Gun Sidearm	
-  Dagger	
-  Whip	
-  Hammer/Grt Hammer	
-  Straight/Thrust Swrd	
-  Katana/Curved Swrd	
-  Great/Ultr Grt Swords	
-  Reaper	
-  Axe/Great Axe	
-  Fist	
-  Bow/Great Bow	
-  Halberd	
-  Twinblade	
-  Sorcery	
-  Miracles	
+  Spear: int
+  Shield: int
+  Gun: int
+  Dagger: int
+  Whip: int
+  Hammer: int
+  StraightSword: int
+  Katana: int
+  Greatsword: int
+  Reaper: int
+  Axe: int
+  Fist: int
+  Bow: int
+  Halberd: int
+  Twinblade: int
+  Sorcery: int
+  Miracles: int
 }
 
 // Table --- inventories ---

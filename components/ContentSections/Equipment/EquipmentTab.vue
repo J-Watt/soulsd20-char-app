@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full" style="height: calc(100vh - 268px);">
+  <div class="flex w-full" style="height: calc(100vh - 280px);">
     <div class="w-2/4 border-r border-white">
       <div class="flex flex-col items-center h-full p-4 text-white" style="max-height: 700px;">
         <h1 class="w-full flex justify-center mb-16 text-white text-2xl font-semibold">
@@ -64,10 +64,10 @@
             You have no {{ itemCategoryDescription }} in your inventory
           </div>
           <div v-else>
-            <button v-for="item in inventoryItems" :key="item.Name" class="flex justify-center items-center text-center relative m-3 w-28 h-28 rounded-sm bg-gray-300" @click="equipItem(item)">
-              <span>
+            <button v-for="item in inventoryItems" :key="item.Name" class="flex flex-col justify-between items-center text-center relative m-3 w-28 h-28 rounded-sm overflow-hidden bg-white" @click="equipItem(item)">
+              <div class="flex items-center h-full font-bold text-lg px-1">
                 {{ item.Name }}
-              </span>
+              </div>
             </button>
           </div>
         </div>
@@ -77,8 +77,9 @@
 </template>
 
 <script setup lang="ts">
-import { Item, usePlayerStore } from "~~/store/player"
+import { usePlayerStore } from "~~/store/player"
 import * as invutils from '@/mixins/invutils'
+import { Item } from '@/mixins/types'
 
 const store = usePlayerStore()
 
@@ -138,7 +139,7 @@ const inventoryItems = computed(()=>{
   return store.Inventory.filter(i => i.Category === slotType.value)
 })
 
-const equippedItems = ref({
+const equippedItems = ref<any>({
   MainHand: {},
   OffHand: {},
   Armor: {},

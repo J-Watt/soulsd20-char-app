@@ -23,15 +23,8 @@
     
     <Tab
       :active-tab="activeTab"
-      tab-identifier="skills"
+      tab-identifier="spells"
       icon-name="book"
-      @tab="emitTab($event)"
-    />
-    
-    <Tab
-      :active-tab="activeTab"
-      tab-identifier="proficiencies"
-      icon-name="swords"
       @tab="emitTab($event)"
     />
     
@@ -39,6 +32,13 @@
       :active-tab="activeTab"
       tab-identifier="feats"
       icon-name="tarot"
+      @tab="emitTab($event)"
+    />
+
+    <Tab
+      :active-tab="activeTab"
+      tab-identifier="notes"
+      icon-name="notes"
       @tab="emitTab($event)"
     />
     

@@ -8,6 +8,7 @@
         :src="`./img/icons/${iconName}.png`"
         class="h-20 taboption"
         :class="activeTab === tabIdentifier && 'iconselected'"
+        draggable="false"
       />
     </button>
 </template>

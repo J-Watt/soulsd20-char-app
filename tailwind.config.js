@@ -12,8 +12,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'coal': '#333333',
+        'charcoal': '#333333',
         'blackish': '#191919',
+        'deepblue': '#292c33',
         'concrete': '#ffffffcf',
       }
     },

@@ -1,151 +1,162 @@
 <template>
-  <div class="flex w-full" style="min-height: calc(100vh - 268px);">
+  <div class="flex w-full" style="min-height: calc(100vh - 280px);">
     <div class="w-2/4 p-4 border-r border-white">
-      <h1 class="w-full flex justify-center mb-16 text-white text-2xl font-semibold">
+      <h1 class="w-full flex justify-center mb-4 text-white text-2xl font-semibold">
         Character
       </h1>
   
-      <div class="w-fit">
-        <div class="flex justify-between">
-          <div class="flex flex-col justify-between mr-4 mb-12 border border-white p-2">
-            <div class="flex items-center h-1/6">
-              <CharacterStatOption
-                name="Athletics"
-                identifier="Athletics"
-                sType="skill"
-                :statAmount="playerStore.Skills.Athletics"
-              />
-            </div>
-      
-            <div class="flex items-center h-1/6">          
-              <CharacterStatOption
-                name="Acrobatics"
-                identifier="Acrobatics"
-                sType="skill"
-                :statAmount="playerStore.Skills.Acrobatics"
-              />
-            </div>
-      
-            <div class="flex items-center h-1/6">          
-              <CharacterStatOption
-                name="Perception"
-                identifier="Perception"
-                sType="skill"
-                :statAmount="playerStore.Skills.Perception"
-              />
-            </div>
-      
-            <div class="flex items-center h-1/6">          
-              <CharacterStatOption
-                name="Fire Keeping"
-                identifier="FireKeeping"
-                sType="skill"
-                :statAmount="playerStore.Skills.FireKeeping"
-              />
-            </div>
-      
-            <div class="flex items-center h-1/6">          
-              <CharacterStatOption
-                name="Sanity"
-                identifier="Sanity"
-                sType="skill"
-                :statAmount="playerStore.Skills.Sanity"
-              />
-            </div>
-      
-            <div class="flex items-center h-1/6">          
-              <CharacterStatOption
-                name="Stealth"
-                identifier="Stealth"
-                sType="skill"
-                :statAmount="playerStore.Skills.Stealth"
-              />
-            </div>
-      
-            <div class="flex items-center h-1/6">          
-              <CharacterStatOption
-                name="Precision"
-                identifier="Precision"
-                sType="skill"
-                :statAmount="playerStore.Skills.Precision"
-              />
-            </div>
-      
-            <div class="flex items-center h-1/6">          
-              <CharacterStatOption
-                name="Diplomacy"
-                identifier="Diplomacy"
-                sType="skill"
-                :statAmount="playerStore.Skills.Diplomacy"
-              />
+      <div class="w-full">
+        <div class="flex justify-around space-x-8">
+          <div class="flex flex-col w-2/4">
+            <h2 class="pb-4 text-lg font-bold text-white text-center">
+              Skills
+            </h2>
+
+            <div class="flex flex-col space-y-1 justify-between mb-12">
+              <div class="flex items-center">
+                <CharacterStatOption
+                  name="Athletics"
+                  identifier="Athletics"
+                  sType="skill"
+                  :statAmount="playerStore.CharacterStats.Skills.Athletics"
+                />
+              </div>
+        
+              <div class="flex items-center">          
+                <CharacterStatOption
+                  name="Acrobatics"
+                  identifier="Acrobatics"
+                  sType="skill"
+                  :statAmount="playerStore.CharacterStats.Skills.Acrobatics"
+                />
+              </div>
+        
+              <div class="flex items-center">          
+                <CharacterStatOption
+                  name="Perception"
+                  identifier="Perception"
+                  sType="skill"
+                  :statAmount="playerStore.CharacterStats.Skills.Perception"
+                />
+              </div>
+        
+              <div class="flex items-center">          
+                <CharacterStatOption
+                  name="Fire Keeping"
+                  identifier="FireKeeping"
+                  sType="skill"
+                  :statAmount="playerStore.CharacterStats.Skills.FireKeeping"
+                />
+              </div>
+        
+              <div class="flex items-center">          
+                <CharacterStatOption
+                  name="Sanity"
+                  identifier="Sanity"
+                  sType="skill"
+                  :statAmount="playerStore.CharacterStats.Skills.Sanity"
+                />
+              </div>
+        
+              <div class="flex items-center">          
+                <CharacterStatOption
+                  name="Stealth"
+                  identifier="Stealth"
+                  sType="skill"
+                  :statAmount="playerStore.CharacterStats.Skills.Stealth"
+                />
+              </div>
+        
+              <div class="flex items-center">          
+                <CharacterStatOption
+                  name="Precision"
+                  identifier="Precision"
+                  sType="skill"
+                  :statAmount="playerStore.CharacterStats.Skills.Precision"
+                />
+              </div>
+        
+              <div class="flex items-center">          
+                <CharacterStatOption
+                  name="Diplomacy"
+                  identifier="Diplomacy"
+                  sType="skill"
+                  :statAmount="playerStore.CharacterStats.Skills.Diplomacy"
+                />
+              </div>
             </div>
           </div>
       
       
       
       
-          <div class="flex flex-col justify-between mr-4 mb-12 border border-white p-2">
-            <div class="flex items-center h-1/6">
-              <CharacterStatOption
-                name="Vitality"
-                identifier="Vitality"
-                sType="stat"
-                :statAmount="playerStore.Stats.Vitality"
-              />
-            </div>
-      
-            <div class="flex items-center h-1/6">          
-              <CharacterStatOption
-                name="Endurance"
-                identifier="Endurance"
-                sType="stat"
-                :statAmount="playerStore.Stats.Endurance"
-              />
-            </div>
-      
-            <div class="flex items-center h-1/6">          
-              <CharacterStatOption
-                name="Strength"
-                identifier="Strength"
-                sType="stat"
-                :statAmount="playerStore.Stats.Strength"
-              />
-            </div>
-      
-            <div class="flex items-center h-1/6">          
-              <CharacterStatOption
-                name="Dexterity"
-                identifier="Dexterity"
-                sType="stat"
-                :statAmount="playerStore.Stats.Dexterity"
-              />
-            </div>
-      
-            <div class="flex items-center h-1/6">          
-              <CharacterStatOption
-                name="Attunement"
-                identifier="Attunement"
-                sType="stat"
-                :statAmount="playerStore.Stats.Attunement"
-              />
-            </div>
-      
-            <div class="flex items-center h-1/6">          
-              <CharacterStatOption
-                name="Intelligence"
-                identifier="Intelligence"
-                sType="stat"
-                :statAmount="playerStore.Stats.Intelligence"
-              />
-            </div>
-      
-            <div class="flex items-center h-1/6">          
-              <CharacterStatOption
-                name="Faith"
-                identifier="Faith"
-                sType="stat"
-                :statAmount="playerStore.Stats.Faith"
-              />
+          <div class="flex flex-col w-2/4">
+            <h2 class="pb-4 text-lg font-bold text-white text-center">
+              Stats
+            </h2>
+            <div class="flex flex-col justify-start space-y-1 mb-12">
+              <div class="flex items-center">
+                <CharacterStatOption
+                  name="Vitality"
+                  identifier="Vitality"
+                  sType="stat"
+                  :statAmount="playerStore.CharacterStats.Stats.Vitality"
+                />
+              </div>
+        
+              <div class="flex items-center">          
+                <CharacterStatOption
+                  name="Endurance"
+                  identifier="Endurance"
+                  sType="stat"
+                  :statAmount="playerStore.CharacterStats.Stats.Endurance"
+                />
+              </div>
+        
+              <div class="flex items-center">          
+                <CharacterStatOption
+                  name="Strength"
+                  identifier="Strength"
+                  sType="stat"
+                  :statAmount="playerStore.CharacterStats.Stats.Strength"
+                />
+              </div>
+        
+              <div class="flex items-center">          
+                <CharacterStatOption
+                  name="Dexterity"
+                  identifier="Dexterity"
+                  sType="stat"
+                  :statAmount="playerStore.CharacterStats.Stats.Dexterity"
+                />
+              </div>
+        
+              <div class="flex items-center">          
+                <CharacterStatOption
+                  name="Attunement"
+                  identifier="Attunement"
+                  sType="stat"
+                  :statAmount="playerStore.CharacterStats.Stats.Attunement"
+                />
+              </div>
+        
+              <div class="flex items-center">          
+                <CharacterStatOption
+                  name="Intelligence"
+                  identifier="Intelligence"
+                  sType="stat"
+                  :statAmount="playerStore.CharacterStats.Stats.Intelligence"
+                />
+              </div>
+        
+              <div class="flex items-center">          
+                <CharacterStatOption
+                  name="Faith"
+                  identifier="Faith"
+                  sType="stat"
+                  :statAmount="playerStore.CharacterStats.Stats.Faith"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -153,42 +164,52 @@
     
     
     
-        <div class="flex flex-col justify-between mr-4 mb-12 border border-white p-2">
-          <div class="flex items-center h-1/6">
-            <CharacterStatOption
-              name="Magics"
-              identifier="Magics"
-              sType="knowledge"
-              :statAmount="playerStore.Knowledge.Magics"
-            />
+        <div class="flex justify-between space-x-8">
+          <div class="flex flex-col w-2/4">
+            <h2 class="pb-4 text-lg font-bold text-white text-center">
+              Knowledge
+            </h2>
+  
+            <div class="flex flex-col justify-between space-y-1 mb-12">
+              <div class="flex items-center">
+                <CharacterStatOption
+                  name="Magics"
+                  identifier="Magics"
+                  sType="knowledge"
+                  :statAmount="playerStore.CharacterStats.Knowledge.Magics"
+                />
+              </div>
+        
+              <div class="flex items-center">          
+                <CharacterStatOption
+                  name="World/History"
+                  identifier="WorldHistory"
+                  sType="knowledge"
+                  :statAmount="playerStore.CharacterStats.Knowledge.WorldHistory"
+                />
+              </div>
+        
+              <div class="flex items-center">          
+                <CharacterStatOption
+                  name="Monsters"
+                  identifier="Monsters"
+                  sType="knowledge"
+                  :statAmount="playerStore.CharacterStats.Knowledge.Monsters"
+                />
+              </div>
+        
+              <div class="flex items-center">          
+                <CharacterStatOption
+                  name="Cosmic"
+                  identifier="Cosmic"
+                  sType="knowledge"
+                  :statAmount="playerStore.CharacterStats.Knowledge.Cosmic"
+                />
+              </div>
+            </div>
           </div>
-    
-          <div class="flex items-center h-1/6">          
-            <CharacterStatOption
-              name="World/History"
-              identifier="WorldHistory"
-              sType="knowledge"
-              :statAmount="playerStore.Knowledge.WorldHistory"
-            />
-          </div>
-    
-          <div class="flex items-center h-1/6">          
-            <CharacterStatOption
-              name="Monsters"
-              identifier="Monsters"
-              sType="knowledge"
-              :statAmount="playerStore.Knowledge.Monsters"
-            />
-          </div>
-    
-          <div class="flex items-center h-1/6">          
-            <CharacterStatOption
-              name="Cosmic"
-              identifier="Cosmic"
-              sType="knowledge"
-              :statAmount="playerStore.Knowledge.Cosmic"
-            />
-          </div>
+
+          <div class="w-2/4" />
         </div>
       </div>
     </div>
