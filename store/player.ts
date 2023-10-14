@@ -7,6 +7,7 @@ import {
   Spell,
   WeaponFeat,
   WeaponProficiencies,
+  UserInputValues,
 } from '@/mixins/types'
 
 type RootState = {
@@ -19,11 +20,14 @@ type RootState = {
   Undying: number;
   Souls: number;
   Level: number;
-  Inventory: Item[],
+
+  UserInputValues: UserInputValues;
+
   AttunementSlots: number;
-  AttunedSpells: Spell[];
   DestinyFeatSlots: number;
+  AttunedSpells: Spell[];
   DestinyFeats: DestinyFeat[];
+  Inventory: Item[],
   WeaponFeats: WeaponFeat[];
   CharacterStats: CharacterStats;
   Spells: Spell[];
@@ -42,6 +46,76 @@ export const usePlayerStore = defineStore({
     Undying: 0,
     Souls: 0,
     Level: 0,
+
+    UserInputValues: {
+      Exhaustion: 0,
+      FirekeepingChecks: 0,
+
+      TotalDodges: 0,
+      CurrentDodges: 0,
+
+      CurrentHP: 0,
+      CurrentFP: 0,
+      CurrentAP: 0,
+
+      MaxHPBonus: 0,
+      MaxFPBonus: 0,
+      MaxAPBonus: 0,
+
+      HpFlask: 0,
+      FpFlask: 0,
+      FlaskLevel: 0,
+
+      AttunementSlots: 0,
+
+      DestinyFeatUsages: {},
+      WeaponFeatUsages: {},
+
+      CurrentStatuses: {
+        Curse: 0,
+        Frost: 0,
+        Bleed: 0,
+        Poison: 0,
+        Toxic: 0,
+        Poise: 0,
+      },
+      BonusStatuses: {
+        Curse: 0,
+        Frost: 0,
+        Bleed: 0,
+        Poison: 0,
+        Toxic: 0,
+        Poise: 0,
+      },
+      BonusResistances: {
+        Physical: 0,
+        Magic: 0,
+        Fire: 0,
+        Lightning: 0,
+        Dark: 0,
+
+        FlatPhysical: 0,
+        FlatMagic: 0,
+        FlatFire: 0,
+        FlatLightning: 0,
+        FlatDark: 0,
+      },
+      Conditions: {
+        ImpairedVision: false,
+        Deaf: false,
+        ArmFracture: false,
+        LegFracture: false,
+        Grappled: false,
+        Restrained: false,
+        Prone: false,
+        Dazed: false,
+        LockedUp: false,
+        Staggered: false,
+        Frenzied: false,
+        Berzerk: false,
+      }
+    },
+
     Inventory: [],
     AttunementSlots: 12,
     AttunedSpells: [],

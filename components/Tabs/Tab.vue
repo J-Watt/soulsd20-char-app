@@ -1,12 +1,12 @@
 <template>
   <button
-      class="flex justify-center items-center h-28 w-28 border-r"
+      class="flex justify-center items-center p-3 border-b"
       @click="emitTab(tabIdentifier)"
       :class="activeTab === tabIdentifier && 'tabselected'"
     >
       <img
         :src="`./img/icons/${iconName}.png`"
-        class="h-20 taboption"
+        class="h-14 taboption"
         :class="activeTab === tabIdentifier && 'iconselected'"
         draggable="false"
       />

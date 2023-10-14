@@ -1,12 +1,12 @@
 <template>
   <div class="flex w-full overflow-hidden main-tab">
-    <div class="flex flex-col w-2/4 border-r border-white overflow-auto">
-      <h1 class="sticky top-0 py-4 bg-deepblue w-full flex justify-center text-white text-2xl font-semibold z-10 border-b border-borderlight">
+    <div class="flex flex-col w-2/4 border-r overflow-auto">
+      <h1 class="sticky top-0 py-4 bg-deepblue w-full flex justify-center text-white text-3xl font-semibold z-10 border-b">
         Attuned spells
       </h1>
     
       <div class="flex flex-col">
-        <div class="border-b border-borderlight">
+        <div class="border-b">
           <div class="flex w-full h-full text-xs px-4">
             <div v-if="store.AttunementSlots === 0" class="flex justify-center spells-center w-full h-full text-white text-2xl" style="min-height: 184px;">
               You have no spell slots
@@ -29,7 +29,7 @@
           </div>
         </div>
     
-        <h1 class="sticky top-0 py-4 bg-deepblue w-full flex justify-center text-white text-2xl font-semibold z-10 border-b border-borderlight">
+        <h1 class="sticky top-0 py-4 bg-deepblue w-full flex justify-center text-white text-3xl font-semibold z-10 border-b">
           Spells
         </h1>
 

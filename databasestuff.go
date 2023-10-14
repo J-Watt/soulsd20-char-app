@@ -83,6 +83,7 @@ type Equipment struct {
 
 type UserInputValues struct {
   Exhaustion int
+  FirekeepingChecks int
 
   TotalDodges int
   CurrentDodges int

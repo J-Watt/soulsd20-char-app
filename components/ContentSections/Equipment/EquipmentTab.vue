@@ -1,8 +1,8 @@
 <template>
   <div class="flex w-full main-tab">
-    <div class="w-2/4 border-r border-white overflow-auto">
+    <div class="w-2/4 border-r overflow-auto">
       <div class="flex flex-col items-center h-full text-white" style="max-height: 700px;">
-        <h1 class="sticky top-0 py-4 bg-deepblue w-full flex justify-center text-white text-2xl font-semibold z-10 border-b border-borderlight">
+        <h1 class="sticky top-0 py-4 bg-deepblue w-full flex justify-center text-white text-3xl font-semibold z-10 border-b">
           Equipment
         </h1>
         
@@ -11,42 +11,42 @@
             <div class="flex flex-col w-1/5">
               <div class="h-2/4 p-4 mb-8 aspect-square" />
     
-              <button class="flex items-center justify-center border border-white h-2/4 p-4 aspect-square text-center" @click="selectedSlot = 'MainHand'">
+              <button class="flex items-center justify-center border h-2/4 p-4 aspect-square text-center" @click="selectedSlot = 'MainHand'">
                 {{ equippedItems.MainHand.Name || 'Main Hand' }}
               </button>
             </div>
     
-            <button class="flex items-center justify-center border border-white p-4 text-center w-3/5" @click="selectedSlot = 'Armor'">
+            <button class="flex items-center justify-center border p-4 text-center w-3/5" @click="selectedSlot = 'Armor'">
               {{ equippedItems.Armor.Name || 'Armor' }}
             </button>
     
             <div class="flex flex-col w-1/5">
               <div class="flex items-center justify-center mb-8 h-2/4 aspect-square">
-                <button class="flex items-center justify-center border border-white p-4 aspect-square" @click="selectedSlot = 'Artifact'">
+                <button class="flex items-center justify-center border p-4 aspect-square" @click="selectedSlot = 'Artifact'">
                   {{ equippedItems.Artifact.Name || 'Artifact' }}
                 </button>
               </div>
     
-              <button class="flex items-center justify-center border border-white h-2/4 p-4 aspect-square" @click="selectedSlot = 'OffHand'">
+              <button class="flex items-center justify-center border h-2/4 p-4 aspect-square" @click="selectedSlot = 'OffHand'">
                 {{ equippedItems.OffHand.Name || 'Off Hand' }}
               </button>
             </div>
           </div>
     
           <div class="flex justify-around space-x-8">
-            <button class="flex items-center justify-center border border-white p-4 aspect-square text-center" @click="selectedSlot = 'Ring1'">
+            <button class="flex items-center justify-center border p-4 aspect-square text-center" @click="selectedSlot = 'Ring1'">
               {{ equippedItems.Ring1.Name || 'Ring 1' }}
             </button>
     
-            <button class="flex items-center justify-center border border-white p-4 aspect-square text-center" @click="selectedSlot = 'Ring2'">
+            <button class="flex items-center justify-center border p-4 aspect-square text-center" @click="selectedSlot = 'Ring2'">
               {{ equippedItems.Ring2.Name || 'Ring 2' }}
             </button>
     
-            <button class="flex items-center justify-center border border-white p-4 aspect-square text-center" @click="selectedSlot = 'Ring3'">
+            <button class="flex items-center justify-center border p-4 aspect-square text-center" @click="selectedSlot = 'Ring3'">
               {{ equippedItems.Ring3.Name || 'Ring 3' }}
             </button>
     
-            <button class="flex items-center justify-center border border-white p-4 aspect-square text-center" @click="selectedSlot = 'Ring4'">
+            <button class="flex items-center justify-center border p-4 aspect-square text-center" @click="selectedSlot = 'Ring4'">
               {{ equippedItems.Ring4.Name || 'Ring 4' }}
             </button>
           </div>

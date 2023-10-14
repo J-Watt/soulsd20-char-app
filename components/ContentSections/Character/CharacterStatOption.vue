@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center w-full rounded-sm text-lg bg-white overflow-hidden">
+  <div class="flex items-center w-full h-full rounded text-lg bg-white overflow-hidden">
     <div class="flex items-center border-r border-black">
       <div class="flex flex-col">
         <button class="flex items-center justify-center bg-blue-900 border-b text-white w-5 h-5" @click="increasePlayerStat">
@@ -16,20 +16,21 @@
       </span>
     </div>
 
-    <div class="flex w-full justify-between items-center mr-3">
+    <div class="flex w-full h-full justify-between items-center">
       <span class="py-1 pl-3 pr-2 font-bold">
         {{ name }}
       </span>
 
-      <div class="flex justify-end items-center w-8 h-5">
+      <div class="flex justify-end items-center h-full">
         <span class="text-sm mr-2">
           Mod: 
         </span>
 
-        <span class="font-bold">
+        <div class="flex justify-center items-center bg-[#ababab] font-bold w-7 h-full">
           {{ mod }}
-        </span>
+        </div>
       </div>
+
     </div>
   </div>
 </template>

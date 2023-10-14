@@ -1,15 +1,19 @@
 <template>
-  <div class="w-full h-full bg-deepblue">
+  <div class="w-full h-full bg-dislight">
     <!-- Top bar -->
-    <TopBar class="border-b-2 border-gray-400"/>
-    <TabOptions :active-tab="activeTab" @tab="activeTab = $event"/>
-
-    <!-- Tabs -->
-    <CharacterTab v-if="activeTab === 'character'" class="w-2/4"/>
-    <InventoryTab v-if="activeTab === 'inventory'" class="w-2/4"/>
-    <EquipmentTab v-if="activeTab === 'equipment'" class="w-2/4"/>
-    <SpellsTab v-if="activeTab === 'spells'" class="w-2/4"/>
-    <FeatsTab v-if="activeTab === 'feats'" class="w-2/4"/>
+    <TopBar class=" bg-disdark"/>
+    <div class="flex">
+      <TabOptions :active-tab="activeTab" @tab="activeTab = $event" class="bg-disdark" />
+  
+      <!-- Tabs -->
+      <div class="flex-1">
+        <CharacterTab v-if="activeTab === 'character'" class="w-2/4"/>
+        <InventoryTab v-if="activeTab === 'inventory'" class="w-2/4"/>
+        <EquipmentTab v-if="activeTab === 'equipment'" class="w-2/4"/>
+        <SpellsTab v-if="activeTab === 'spells'" class="w-2/4"/>
+        <FeatsTab v-if="activeTab === 'feats'" class="w-2/4"/>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -24,7 +28,7 @@ const tabOptions = ['character', 'inventory', 'equipment', 'spells', 'feats', 'c
 
 <style lang="less">
 .main-tab {
-  height: calc(100vh - 280px);
+  height: calc(100vh - 166px);
   overflow: hidden;
 
   scrollbar-width: normal;

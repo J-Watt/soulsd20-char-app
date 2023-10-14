@@ -17,3 +17,60 @@ export function statMod(statAmount: number): number {
   const val = Math.floor(Math.abs(10 - statAmount) / 2)
   return statAmount < 10 ? -val : val
 }
+
+export function decreaseValue(value: string | number, min?: string | number) {
+  value = Number(value)
+  if (min === 0 || min) {
+    min = Number(min)
+    if (value <= min) return min
+  }
+
+  return value - 1
+}
+
+export function increaseValue(value: string | number, max?: string | number) {
+  value = Number(value)
+  if (max === 0 || max) {
+    max = Number(max)
+    if (value >= max) return max
+  }
+
+  return value + 1
+}
+
+export function getBackgroundHP(backgroundName: string) {
+  switch (backgroundName) {
+    case 'Knight':
+      return 24
+    case 'Mercenary':
+      return 20
+    case 'Warrior':
+      return 27
+    case 'Herald':
+      return 20
+    case 'Cruel Veteran':
+      return 22
+    case 'Assassin':
+      return 20
+    case 'Thief':
+      return 17
+    case 'Inquisitor':
+      return 20
+    case 'Sorcerer':
+      return 14
+    case 'Cleric':
+      return 27
+    case 'Pyromancer':
+      return 17
+    case 'Curious Noble':
+      return 20
+    case 'Wanderer':
+      return 17
+    case 'Deprived':
+      return 20
+    case 'Chaotic Tarnished':
+      return 20
+  }
+
+  return 20
+}

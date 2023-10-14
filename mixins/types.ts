@@ -136,3 +136,71 @@ export interface WeaponFeats {
   Sorcery: WeaponFeat[];
   Miracles: WeaponFeat[];
 }
+
+export interface UserInputValues {
+  Exhaustion: number;
+  FirekeepingChecks: number;
+
+  TotalDodges: number;
+  CurrentDodges: number;
+
+  CurrentHP: number;
+  CurrentFP: number;
+  CurrentAP: number;
+
+  MaxHPBonus: number;
+  MaxFPBonus: number;
+  MaxAPBonus: number;
+
+  HpFlask: number;
+  FpFlask: number;
+  FlaskLevel: number;
+
+  AttunementSlots: number;
+
+  DestinyFeatUsages: {};
+  WeaponFeatUsages: {};
+
+  CurrentStatuses: Statuses;
+  BonusStatuses: Statuses;
+  BonusResistances: InputValueResistances;
+  Conditions: Conditions;
+}
+
+export interface Conditions {
+  ImpairedVision: boolean;
+  Deaf: boolean;
+  ArmFracture: boolean;
+  LegFracture: boolean;
+  Grappled: boolean;
+  Restrained: boolean;
+  Prone: boolean;
+  Dazed: boolean;
+  LockedUp: boolean;
+  Staggered: boolean;
+  Frenzied: boolean;
+  Berzerk: boolean;
+}
+
+export interface Statuses {
+  Curse: number;
+  Frost: number;
+  Bleed: number;
+  Poison: number;
+  Toxic: number;
+  Poise: number;
+}
+
+export interface InputValueResistances {
+  Physical: number;
+  Magic: number;
+  Fire: number;
+  Lightning: number;
+  Dark: number;
+
+  FlatPhysical: number;
+  FlatMagic: number;
+  FlatFire: number;
+  FlatLightning: number;
+  FlatDark: number;
+}

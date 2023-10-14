@@ -16,6 +16,10 @@ useHead({
   width: 100%;
   height: 100vh;
 
+  * {
+    border-color: #616161;
+  }
+
   scrollbar-width: normal;
   scrollbar-color: #777 #555;
 
@@ -30,6 +34,15 @@ useHead({
   
   ::-webkit-scrollbar-track {
     background-color: transparent;
+  }
+
+  input:focus {
+    outline-width: 0;
+  }
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 }
 
