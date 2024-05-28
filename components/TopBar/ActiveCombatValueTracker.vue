@@ -7,7 +7,7 @@
           <input
             v-model="playerStore.UserInputValues.CurrentHP"
             type="number"
-            :min="min"
+            min="0"
             class="w-fit max-w-[40px] text-right bg-transparent"
             @change="setHP"
           />
@@ -28,7 +28,7 @@
           <input
             v-model="playerStore.UserInputValues.CurrentFP"
             type="number"
-            :min="min"
+            min="0"
             class="w-fit max-w-[40px] text-right bg-transparent"
             @change="setFP"
           />
@@ -49,7 +49,7 @@
           <input
             v-model="playerStore.UserInputValues.CurrentAP"
             type="number"
-            :min="min"
+            min="0"
             class="w-fit max-w-[40px] text-right bg-transparent"
             @change="setAP"
           />
@@ -74,12 +74,12 @@
         </button>
 
         <div class="flex flex-col w-7">
-          <button class="flex items-center justify-center h-1/2 border-b bg-blue-900" @click="addFlask('hp')">
-            ^
+          <button class="flex items-center justify-center h-1/2 border-b bg-teal" @click="addFlask('hp')">
+            <UIcon name="i-heroicons-chevron-up" />
           </button>
 
-          <button class="flex items-center justify-center h-1/2 rotate-180 bg-blue-900" @click="removeFlask('hp')">
-            ^
+          <button class="flex items-center justify-center h-1/2 bg-teal" @click="removeFlask('hp')">
+            <UIcon name="i-heroicons-chevron-down" />
           </button>
         </div>
       </div>
@@ -92,12 +92,12 @@
         </button>
 
         <div class="flex flex-col w-7">
-          <button class="flex items-center justify-center h-1/2 border-b bg-blue-900" @click="addFlask('fp')">
-            ^
+          <button class="flex items-center justify-center h-1/2 border-b bg-teal" @click="addFlask('fp')">
+            <UIcon name="i-heroicons-chevron-up" />
           </button>
 
-          <button class="flex items-center justify-center h-1/2 rotate-180 bg-blue-900" @click="removeFlask('fp')">
-            ^
+          <button class="flex items-center justify-center h-1/2 bg-teal" @click="removeFlask('fp')">
+            <UIcon name="i-heroicons-chevron-down" />
           </button>
         </div>
       </div>
@@ -120,7 +120,7 @@ import * as utils from '@/mixins/utils'
 const playerStore = usePlayerStore()
 
 const maxHp = computed(()=>{
-  const backgroundStartingHP = utils.getBackgroundHP(playerStore.Class)
+  const backgroundStartingHP = utils.getBackgroundHP(playerStore.Background)
   return backgroundStartingHP + playerStore.UserInputValues.MaxHPBonus
 })
 

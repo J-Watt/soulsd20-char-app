@@ -2,6 +2,11 @@ import tailwindConfig from "./tailwind.config";
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  runtimeConfig: {
+    public: {
+      API_BASE_URL: process.env.API_BASE_URL,
+    }
+  },
   components: [
     {
       path: '~/components',
@@ -19,10 +24,7 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  modules: [
-    '@pinia/nuxt',
-    '@nuxtjs/google-fonts'
-  ],
+  modules: ['@pinia/nuxt', '@nuxtjs/google-fonts', '@nuxt/ui', "nuxt-security"],
   googleFonts: {
     families: {
       'EB+Garamond': true,

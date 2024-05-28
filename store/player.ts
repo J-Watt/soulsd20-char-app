@@ -8,6 +8,7 @@ import {
   WeaponFeat,
   WeaponProficiencies,
   UserInputValues,
+  Notes,
 } from '@/mixins/types'
 
 type RootState = {
@@ -15,8 +16,8 @@ type RootState = {
   UserUUID: string;
   Name: string;
   Gender: string;
-  Race: string;
-  Class: string;
+  Lineage: string;
+  Background: string;
   Undying: number;
   Souls: number;
   Level: number;
@@ -32,6 +33,8 @@ type RootState = {
   CharacterStats: CharacterStats;
   Spells: Spell[];
   WeaponProficiencies: WeaponProficiencies;
+
+  Notes: Notes;
 }
 
 export const usePlayerStore = defineStore({
@@ -41,8 +44,8 @@ export const usePlayerStore = defineStore({
     UserUUID: '',
     Name: 'Yah',
     Gender: 'Male',
-    Race: 'Human',
-    Class: 'Knight',
+    Lineage: 'Human',
+    Background: 'Knight',
     Undying: 0,
     Souls: 0,
     Level: 0,
@@ -189,15 +192,18 @@ export const usePlayerStore = defineStore({
       Sorcery: 0,
       Miracles: 0,
     },
+    Notes: {
+      General: []
+    },
     AvatarURL: '',
   } as RootState),
 
   actions: {
     attuneSpell(spellUUID: string) {
       const compendiumStore = useCompendiumStore()
-      const spell = compendiumStore.Spells.find(i => i.UUID === spellUUID)
-      if (!spell) return
-      this.AttunedSpells.push(JSON.parse(JSON.stringify(spell)))
+      // const spell = compendiumStore.Spells.find(i => i.UUID === spellUUID)
+      // if (!spell) return
+      // this.AttunedSpells.push(JSON.parse(JSON.stringify(spell)))
     },
 
     unattuneSpell(index: number) {

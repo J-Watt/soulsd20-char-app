@@ -12,6 +12,7 @@
         <EquipmentTab v-if="activeTab === 'equipment'" class="w-2/4"/>
         <SpellsTab v-if="activeTab === 'spells'" class="w-2/4"/>
         <FeatsTab v-if="activeTab === 'feats'" class="w-2/4"/>
+        <NotesTab v-if="activeTab === 'notes'" class="w-2/4"/>
       </div>
     </div>
   </div>
@@ -23,7 +24,7 @@ definePageMeta({
 })
 
 const activeTab = ref('character')
-const tabOptions = ['character', 'inventory', 'equipment', 'spells', 'feats', 'compendium']
+const tabOptions = ['character', 'inventory', 'equipment', 'spells', 'feats', 'notes', 'compendium']
 </script>
 
 <style lang="less">

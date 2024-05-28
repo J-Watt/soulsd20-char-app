@@ -5,8 +5,16 @@
 </template>
 
 <script setup>
+import { useCompendiumStore } from '~~/store/compendium'
+
+const compendiumStore = useCompendiumStore()
+
 useHead({
   title: 'Souls D20 Companion'
+})
+
+onBeforeMount(()=>{
+  // compendiumStore.getCompendium()
 })
 </script>
 
@@ -16,12 +24,14 @@ useHead({
   width: 100%;
   height: 100vh;
 
+  scrollbar-width: normal;
+  scrollbar-color: #777 #555;
+
+  color: #333333;
+
   * {
     border-color: #616161;
   }
-
-  scrollbar-width: normal;
-  scrollbar-color: #777 #555;
 
   ::-webkit-scrollbar {
     width: 6px;

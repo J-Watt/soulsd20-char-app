@@ -20,7 +20,7 @@
         </div>
   
         <div class="overflow-auto">
-          <h1 class="sticky top-0 w-full flex justify-center bg-deepblue py-4 text-white text-2xl font-semibold border-b">
+          <h1 class="sticky top-0 w-full flex justify-center py-4 bg-dislight text-white text-2xl font-semibold border-b">
             Inventory
           </h1>
           
@@ -34,7 +34,7 @@
                   {{ item.Name }}
                 </div>
         
-                <span class="flex items-center justify-center absolute top-0 left-0 bg-blue-900 text-white font-bold w-4 h-4">
+                <span class="flex items-center justify-center absolute top-0 left-0 bg-teal text-white font-bold w-4 h-4">
                   {{ item.Quantity }}
                 </span>
       
@@ -43,10 +43,10 @@
                 </button>
       
                 <div class="flex absolute bottom-0 w-full">
-                  <button class="flex items-center justify-center bg-blue-900 border-r text-white w-2/4 h-4" @click="decreaseItemQuantity(item)">
+                  <button class="flex items-center justify-center bg-teal border-r text-white text-lg w-2/4 h-4" @click="decreaseItemQuantity(item)">
                     -
                   </button>
-                  <button class="flex items-center justify-center bg-blue-900 text-white w-2/4 h-4" @click="increaseItemQuantity(item)">
+                  <button class="flex items-center justify-center bg-teal text-white w-2/4 h-4" @click="increaseItemQuantity(item)">
                     +
                   </button>
                 </div>
@@ -54,8 +54,8 @@
             </div>
           </div>
       
-          <h1 class="sticky top-0 py-4 bg-deepblue w-full flex justify-center text-white text-2xl font-semibold border-b z-10">
-            Items
+          <h1 class="sticky top-0 py-4 w-full flex justify-center text-white bg-dislight text-2xl font-semibold border-b z-10">
+            All items
           </h1>
       
           <div class="p-4 mb-20">
@@ -67,7 +67,7 @@
                   </div>
                 </div>
                 
-                <button v-if="itemNotInInventory(item)" class="w-full h-4 text-white text-xs bg-blue-900" @click="addItem(item)">
+                <button v-if="itemNotInInventory(item)" class="w-full h-4 text-white text-xs bg-teal" @click="addItem(item)">
                   Add
                 </button>
       
@@ -76,11 +76,46 @@
                 </span>
               </div>
         
-              <div>
-                <button @click="createItem" class="flex justify-center items-center text-center relative m-3 w-28 h-28 rounded-sm text-lg bg-white">
+              <UPopover>
+                <button @click="creatingItem = true" class="flex justify-center items-center text-center relative m-3 w-28 h-28 rounded-sm text-lg bg-white">
                   Create item
                 </button>
-              </div>
+                <template #panel>
+                  <div class="flex flex-col h-fit space-y-1 p-2 rounded-sm bg-white">
+                    <div class="flex justify-between items-center">
+                      <span class="mr-2">
+                        Name
+                      </span>
+                      <input v-model="createItemName" class="bg-white border rounded-sm p-1" />
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                      <span class="mr-2">
+                        Description
+                      </span>
+                      <input v-model="createItemDescription" class="bg-white border rounded-sm p-1" />
+                    </div>
+
+                    <div class="flex justify-between items-center">
+                      <span class="mr-2">
+                        Type
+                      </span>
+                      <USelect
+                        v-model="createItemType"
+                        :options="itemTypeOptions"
+                        option-attribute="name"
+                        :ui="{
+                          ring: 'ring-0 focus:ring-0',
+                        }"
+                      />
+                    </div>
+                    
+                    <button @click="createItem" class="text-white bg-teal rounded-sm w-12 mt-2 self-end">Create</button>
+                  </div>
+                </template>
+              </UPopover>
+
+              
             </div>
           </div>
         </div>
@@ -98,11 +133,20 @@ import { useCompendiumStore } from '~~/store/compendium'
 const store = usePlayerStore()
 const compendiumStore = useCompendiumStore()
 
-const allItems = computed(()=> {
-  return compendiumStore.Items.filter(i => i.Category === activeTab.value || activeTab.value === 'all')
-})
+const itemTypeOptions = [
+  { name: 'Tool', value: 'tools' },
+  { name: 'Miscellaneous', value: 'misc' },
+  { name: 'Weapon', value: 'weapon' },
+  { name: 'Armor', value: 'armor' },
+  { name: 'Ring', value: 'ring' },
+  { name: 'Artifact', value: 'artifact' }
+]
 
 const activeTab = shallowRef('all')
+const creatingItem = shallowRef(false)
+const createItemName = shallowRef('')
+const createItemDescription = shallowRef('')
+const createItemType = ref(itemTypeOptions[0].value)
 
 const itemCategoryDescription = computed(()=>{
   return invutils.itemCategoryDescription(activeTab.value)
@@ -111,6 +155,12 @@ const itemCategoryDescription = computed(()=>{
 const inventoryItems = computed(()=>{
   return store.Inventory.filter(i => i.Category === activeTab.value || activeTab.value === 'all')
 })
+
+const allItems = computed(()=> {
+  return compendiumStore.Items.filter(i => i.Category === activeTab.value || activeTab.value === 'all')
+})
+
+
 
 const typeTabs = [
   { Name: 'All', Identifier: 'all', },
@@ -124,11 +174,14 @@ const typeTabs = [
 
 function createItem() {
   compendiumStore.createItem({
-    UUID: 'Steel plate armor',
-    Name: 'Steel plate armor',
-    Category: 'armor',
+    UUID: createItemName.value,
+    Name: createItemName.value,
+    Description: createItemDescription.value,
+    Category: createItemType.value,
     Quantity: 1,
   })
+
+  creatingItem.value = false
 }
 
 function addItem(item: Item) {

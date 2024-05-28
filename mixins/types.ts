@@ -93,9 +93,11 @@ export interface Spell {
   UUID: string;
   Name: string;
   Description: string;
+  Requirements: string;
   Cost: number;
-  APCost: number;
-  FPCost: number;
+  AP: number | string;
+  FP: number;
+  Damage: string;
   Range: string;
   Duration: string;
   ChargedRelationUUID: string;
@@ -203,4 +205,8 @@ export interface InputValueResistances {
   FlatFire: number;
   FlatLightning: number;
   FlatDark: number;
+}
+
+export interface Notes {
+  General: any[];
 }

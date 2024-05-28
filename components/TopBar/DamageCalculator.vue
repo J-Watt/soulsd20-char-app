@@ -19,11 +19,15 @@
         <div class="h-1/3" />
 
         <div class="flex justify-end items-center h-1/3">
-          Resistances
+          Resistance
+        </div>
+
+        <div class="flex justify-end items-center h-1/3">
+          Extra Flat
         </div>
 
         <div class="flex justify-end items-end text-right h-1/3">
-          HP Loss
+          Result
         </div>
       </div>
 
@@ -49,136 +53,55 @@
             Dark
           </div>
         </div>
-
-        <div class="flex justify-between border rounded-sm">
-          <div class="flex justify-center items-center border-r border-black w-1/5 h-5 bg-white text-charcoal">
-            {{ playerStore.UserInputValues.BonusResistances.Physical }}
-            
-          </div>
-
-          <div  class="flex justify-center items-center border-r border-black w-1/5 h-5 bg-white text-charcoal">
-            {{ playerStore.UserInputValues.BonusResistances.Magic }}
-            <span v-if="playerStore.UserInputValues.BonusResistances.FlatMagic" class="ml-1">
-              (- {{ playerStore.UserInputValues.BonusResistances.FlatMagic }})
-            </span>
-          </div>
-          
-          <div  class="flex justify-center items-center border-r border-black w-1/5 h-5 bg-white text-charcoal">
-            {{ playerStore.UserInputValues.BonusResistances.Fire }}
-            <span v-if="playerStore.UserInputValues.BonusResistances.FlatFire" class="ml-1">
-              (- {{ playerStore.UserInputValues.BonusResistances.FlatFire }})
-            </span>
-          </div>
-          
-          <div  class="flex justify-center items-center border-r border-black w-1/5 h-5 bg-white text-charcoal">
-            {{ playerStore.UserInputValues.BonusResistances.Lightning }}
-            <span v-if="playerStore.UserInputValues.BonusResistances.FlatLightning" class="ml-1">
-              (- {{ playerStore.UserInputValues.BonusResistances.FlatLightning }})
-            </span>
-          </div>
-          
-          <div  class="flex justify-center items-center w-1/5 h-5 bg-white text-charcoal">
-            {{ playerStore.UserInputValues.BonusResistances.Dark }}
-            <span v-if="playerStore.UserInputValues.BonusResistances.FlatDark" class="ml-1">
-              (- {{ playerStore.UserInputValues.BonusResistances.FlatDark }})
-            </span>
-          </div>
+<!-- function setAmt() {
+  if (!stat.value) stat.value = 0
+  updatePlayerValue('set')
+} -->
+        <div class="flex justify-between rounded-sm">
+          <input v-model="playerStore.UserInputValues.BonusResistances.Physical" class="flex justify-center items-center border-r border-black w-1/5 h-5 bg-white text-charcoal text-center" style="max-width: 56px;" />
+          <input v-model="playerStore.UserInputValues.BonusResistances.Magic" class="flex justify-center items-center border-r border-black w-1/5 h-5 bg-white text-charcoal text-center" style="max-width: 56px;" />
+          <input v-model="playerStore.UserInputValues.BonusResistances.Fire" class="flex justify-center items-center border-r border-black w-1/5 h-5 bg-white text-charcoal text-center" style="max-width: 56px;" />
+          <input v-model="playerStore.UserInputValues.BonusResistances.Lightning" class="flex justify-center items-center border-r border-black w-1/5 h-5 bg-white text-charcoal text-center" style="max-width: 56px;" />
+          <input v-model="playerStore.UserInputValues.BonusResistances.Dark" class="flex justify-center items-center border-r border-black w-1/5 h-5 bg-white text-charcoal text-center" style="max-width: 56px;" />
         </div>
 
-        <div class="flex justify-between border rounded-sm">
+        <div class="flex justify-between rounded-sm">
+          <input v-model="playerStore.UserInputValues.BonusResistances.FlatPhysical" class="flex justify-center items-center border-r border-black w-1/5 h-5 bg-white text-charcoal text-center" style="max-width: 56px;" />
+          <input v-model="playerStore.UserInputValues.BonusResistances.FlatMagic" class="flex justify-center items-center border-r border-black w-1/5 h-5 bg-white text-charcoal text-center" style="max-width: 56px;" />
+          <input v-model="playerStore.UserInputValues.BonusResistances.FlatFire" class="flex justify-center items-center border-r border-black w-1/5 h-5 bg-white text-charcoal text-center" style="max-width: 56px;" />
+          <input v-model="playerStore.UserInputValues.BonusResistances.FlatLightning" class="flex justify-center items-center border-r border-black w-1/5 h-5 bg-white text-charcoal text-center" style="max-width: 56px;" />
+          <input v-model="playerStore.UserInputValues.BonusResistances.FlatDark" class="flex justify-center items-center border-r border-black w-1/5 h-5 bg-white text-charcoal text-center" style="max-width: 56px;" />
+        </div>
+
+        <div class="flex justify-between rounded-sm">
           <button class="w-full h-5 overflow-hidden" style="max-width: 56px;" @click="takeDamage(calculatorDamagePhysical)">
             <div class="w-full text-center border-r border-black hover:bg-red-100 bg-white text-charcoal">
               <span v-if="calculatorDamagePhysical > 0">-</span>
-              {{ calculatorDamagePhysical }}
-
-              <span v-if="playerStore.UserInputValues.BonusResistances.FlatPhysical && (calculatorDamagePhysical && calculatorDamageInput)" class="ml-[2px]">
-                <span class="mr-[-5px]">
-                  (
-                </span>
-                  <span v-if="playerStore.UserInputValues.BonusResistances.FlatPhysical > 0">+</span>
-                  <span>
-                    {{ playerStore.UserInputValues.BonusResistances.FlatPhysical }}
-                  </span>
-                  <span class="ml-[-3px]">
-                  )
-                </span>
-              </span>
+              {{ calculatorDamagePhysical }} HP
             </div>
           </button>
           <button class="w-full h-5 overflow-hidden" style="max-width: 56px;" @click="takeDamage(calculatorDamageMagic)">
             <div class="w-full text-center border-r border-black hover:bg-red-100 bg-white text-charcoal">
               <span v-if="calculatorDamageMagic > 0">-</span>
-              {{ calculatorDamageMagic }}
-              
-              <span v-if="playerStore.UserInputValues.BonusResistances.FlatMagic && (calculatorDamageMagic && calculatorDamageInput)" class="ml-[2px]">
-                <span class="mr-[-5px]">
-                  (
-                </span>
-                  <span v-if="playerStore.UserInputValues.BonusResistances.FlatMagic > 0">+</span>
-                  <span>
-                    {{ playerStore.UserInputValues.BonusResistances.FlatMagic }}
-                  </span>
-                  <span class="ml-[-3px]">
-                  )
-                </span>
-              </span>
+              {{ calculatorDamageMagic }} HP
             </div>
           </button>
           <button class="w-full h-5 overflow-hidden" style="max-width: 56px;" @click="takeDamage(calculatorDamageFire)">
             <div class="w-full text-center border-r border-black hover:bg-red-100 bg-white text-charcoal">
               <span v-if="calculatorDamageFire > 0">-</span>
-              {{ calculatorDamageFire }}
-
-              <span v-if="playerStore.UserInputValues.BonusResistances.FlatFire && (calculatorDamageFire && calculatorDamageInput)" class="ml-[2px]">
-                <span class="mr-[-5px]">
-                  (
-                </span>
-                  <span v-if="playerStore.UserInputValues.BonusResistances.FlatFire > 0">+</span>
-                  <span>
-                    {{ playerStore.UserInputValues.BonusResistances.FlatFire }}
-                  </span>
-                  <span class="ml-[-3px]">
-                  )
-                </span>
-              </span>
+              {{ calculatorDamageFire }} HP
             </div>
           </button>
           <button class="w-full h-5 overflow-hidden" style="max-width: 56px;" @click="takeDamage(calculatorDamageLightning)">
             <div class="w-full text-center border-r border-black hover:bg-red-100 bg-white text-charcoal">
               <span v-if="calculatorDamageLightning > 0">-</span>
-              {{ calculatorDamageLightning }}
-
-              <span v-if="playerStore.UserInputValues.BonusResistances.FlatLightning && (calculatorDamageLightning && calculatorDamageInput)" class="ml-[2px]">
-                <span class="mr-[-5px]">
-                  (
-                </span>
-                  <span v-if="playerStore.UserInputValues.BonusResistances.FlatLightning > 0">+</span>
-                  <span>
-                    {{ playerStore.UserInputValues.BonusResistances.FlatLightning }}
-                  </span>
-                  <span class="ml-[-3px]">
-                  )
-                </span>
-              </span>
+              {{ calculatorDamageLightning }} HP
             </div>
           </button>
           <button class="w-full h-5 overflow-hidden" style="max-width: 56px;" @click="takeDamage(calculatorDamageDark)">
             <div class="w-full text-center hover:bg-red-100 bg-white text-charcoal">
               <span v-if="calculatorDamageDark > 0">-</span>
-              {{ calculatorDamageDark }}
-
-              <span v-if="playerStore.UserInputValues.BonusResistances.FlatDark && (calculatorDamageDark && calculatorDamageInput)" class="ml-[2px]">
-                <span class="mr-[-5px]">
-                  (
-                </span>
-                  <span v-if="playerStore.UserInputValues.BonusResistances.FlatDark > 0">+</span>
-                  <span>
-                    {{ playerStore.UserInputValues.BonusResistances.FlatDark }}
-                  </span>
-                  <span class="ml-[-3px]">
-                  )
-                </span>
-              </span>
+              {{ calculatorDamageDark }} HP
             </div>
           </button>
         </div>

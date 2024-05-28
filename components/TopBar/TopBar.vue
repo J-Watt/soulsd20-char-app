@@ -40,6 +40,10 @@
         </div>
   
         <div class="flex justify-center items-center mr-4">
+          <!-- <iframe
+            :src="blah"
+            @click="dl"
+          /> -->
           <img src="@/img/ok.jpg" class="max-h-24 lg:max-h-32">
         </div>
       </div>
@@ -49,8 +53,25 @@
 
 <script setup lang="ts">
 import { usePlayerStore } from '~~/store/player';
+import image from "@/img/ok.jpg"
 
 const playerStore = usePlayerStore()
+
+const blah: any = ref('')
+
+onMounted(()=>{
+  const reader = new FileReader()
+  console.log(image)
+
+  reader.onloadend = () => {
+    blah.value = reader.result
+  }
+
+  const blob = new Blob([image], {
+    type: 'text/html'
+  })
+  reader.readAsDataURL(blob)
+})
 </script>
 
 <style lang="less" scoped>

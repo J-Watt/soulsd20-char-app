@@ -2,14 +2,14 @@
   <div class="flex justify-between items-center w-full rounded-sm bg-white text-charcoal overflow-hidden">
     <div class="flex h-full border-r border-black">
       <button
-        class="flex items-center h-full justify-center bg-blue-900 border-r text-white w-4"
+        class="flex items-center h-full justify-center bg-teal border-r text-white w-4"
         @click="decreasePlayerStat"
       >
         -
       </button>
 
       <button
-        class="flex items-center justify-center bg-blue-900 text-white w-4"
+        class="flex items-center justify-center bg-teal text-white w-4"
         @click="increasePlayerStat"
       >
         +
@@ -25,7 +25,7 @@
         v-model="stat"
         type="number"
         :min="min"
-        class="px-1 w-6 text-center text-charcoal"
+        class="px-1 w-6 text-center text-charcoal bg-white"
         @change="setAmt"
       />
     </div>

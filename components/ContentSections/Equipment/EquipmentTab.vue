@@ -1,74 +1,76 @@
 <template>
-  <div class="flex w-full main-tab">
-    <div class="w-2/4 border-r overflow-auto">
-      <div class="flex flex-col items-center h-full text-white" style="max-height: 700px;">
-        <h1 class="sticky top-0 py-4 bg-deepblue w-full flex justify-center text-white text-3xl font-semibold z-10 border-b">
-          Equipment
-        </h1>
-        
-        <div class="flex flex-1 flex-col w-full max-w-screen-md pt-6 px-4 pb-4 text-lg">
-          <div class="flex flex-1 justify-between space-x-8 mb-16">
-            <div class="flex flex-col w-1/5">
-              <div class="h-2/4 p-4 mb-8 aspect-square" />
-    
-              <button class="flex items-center justify-center border h-2/4 p-4 aspect-square text-center" @click="selectedSlot = 'MainHand'">
-                {{ equippedItems.MainHand.Name || 'Main Hand' }}
-              </button>
-            </div>
-    
-            <button class="flex items-center justify-center border p-4 text-center w-3/5" @click="selectedSlot = 'Armor'">
-              {{ equippedItems.Armor.Name || 'Armor' }}
-            </button>
-    
-            <div class="flex flex-col w-1/5">
-              <div class="flex items-center justify-center mb-8 h-2/4 aspect-square">
-                <button class="flex items-center justify-center border p-4 aspect-square" @click="selectedSlot = 'Artifact'">
-                  {{ equippedItems.Artifact.Name || 'Artifact' }}
+  <div class="flex flex-col w-full main-tab">
+    <h1 class="sticky top-0 py-4 w-full flex justify-center bg-dismid text-white text-3xl font-semibold z-10 border-b">
+      Equipment
+    </h1>
+
+    <div class="flex w-full h-full">
+      <div class="w-2/4 border-r overflow-auto">
+        <div class="flex flex-col items-center h-full text-white" style="max-height: 700px;">  
+          <div class="flex flex-1 flex-col w-full max-w-screen-md pt-6 px-4 pb-4 text-lg">
+            <div class="flex flex-1 justify-between space-x-8 mb-16">
+              <div class="flex flex-col w-1/5">
+                <div class="h-2/4 p-4 mb-8 aspect-square" />
+      
+                <button class="flex items-center justify-center border h-2/4 p-4 aspect-square text-center" @click="selectedSlot = 'MainHand'">
+                  {{ equippedItems.MainHand.Name || 'Main Hand' }}
                 </button>
               </div>
-    
-              <button class="flex items-center justify-center border h-2/4 p-4 aspect-square" @click="selectedSlot = 'OffHand'">
-                {{ equippedItems.OffHand.Name || 'Off Hand' }}
+      
+              <button class="flex items-center justify-center border p-4 text-center w-3/5" @click="selectedSlot = 'Armor'">
+                {{ equippedItems.Armor.Name || 'Armor' }}
+              </button>
+      
+              <div class="flex flex-col w-1/5">
+                <div class="flex items-center justify-center mb-8 h-2/4 aspect-square">
+                  <button class="flex items-center justify-center border p-4 aspect-square" @click="selectedSlot = 'Artifact'">
+                    {{ equippedItems.Artifact.Name || 'Artifact' }}
+                  </button>
+                </div>
+      
+                <button class="flex items-center justify-center border h-2/4 p-4 aspect-square" @click="selectedSlot = 'OffHand'">
+                  {{ equippedItems.OffHand.Name || 'Off Hand' }}
+                </button>
+              </div>
+            </div>
+      
+            <div class="flex justify-around space-x-8">
+              <button class="flex items-center justify-center border p-4 aspect-square text-center" @click="selectedSlot = 'Ring1'">
+                {{ equippedItems.Ring1.Name || 'Ring 1' }}
+              </button>
+      
+              <button class="flex items-center justify-center border p-4 aspect-square text-center" @click="selectedSlot = 'Ring2'">
+                {{ equippedItems.Ring2.Name || 'Ring 2' }}
+              </button>
+      
+              <button class="flex items-center justify-center border p-4 aspect-square text-center" @click="selectedSlot = 'Ring3'">
+                {{ equippedItems.Ring3.Name || 'Ring 3' }}
+              </button>
+      
+              <button class="flex items-center justify-center border p-4 aspect-square text-center" @click="selectedSlot = 'Ring4'">
+                {{ equippedItems.Ring4.Name || 'Ring 4' }}
               </button>
             </div>
-          </div>
-    
-          <div class="flex justify-around space-x-8">
-            <button class="flex items-center justify-center border p-4 aspect-square text-center" @click="selectedSlot = 'Ring1'">
-              {{ equippedItems.Ring1.Name || 'Ring 1' }}
-            </button>
-    
-            <button class="flex items-center justify-center border p-4 aspect-square text-center" @click="selectedSlot = 'Ring2'">
-              {{ equippedItems.Ring2.Name || 'Ring 2' }}
-            </button>
-    
-            <button class="flex items-center justify-center border p-4 aspect-square text-center" @click="selectedSlot = 'Ring3'">
-              {{ equippedItems.Ring3.Name || 'Ring 3' }}
-            </button>
-    
-            <button class="flex items-center justify-center border p-4 aspect-square text-center" @click="selectedSlot = 'Ring4'">
-              {{ equippedItems.Ring4.Name || 'Ring 4' }}
-            </button>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="w-2/4 h-full p-4">
-      <div v-if="selectedSlot">
-        <h1 class="w-full flex justify-center mb-16 text-white text-2xl font-semibold">
-          Select {{ equipDescription }}
-        </h1>
-        <div class="flex flex-wrap w-full h-96 text-xs">
-          <div v-if="inventoryItems.length === 0" class="flex justify-center  w-full text-white text-2xl">
-            You have no {{ itemCategoryDescription }} in your inventory
-          </div>
-          <div v-else>
-            <button v-for="item in inventoryItems" :key="item.Name" class="flex flex-col justify-between items-center text-center relative m-3 w-28 h-28 rounded-sm overflow-hidden bg-white" @click="equipItem(item)">
-              <div class="flex items-center h-full font-bold text-lg px-1">
-                {{ item.Name }}
-              </div>
-            </button>
+  
+      <div class="w-2/4 h-full p-4">
+        <div v-if="selectedSlot">
+          <h1 class="w-full flex justify-center mb-16 text-white text-2xl font-semibold">
+            Select {{ equipDescription }}
+          </h1>
+          <div class="flex flex-wrap w-full h-96 text-xs">
+            <div v-if="inventoryItems.length === 0" class="flex justify-center  w-full text-white text-2xl">
+              You have no {{ itemCategoryDescription }} in your inventory
+            </div>
+            <div v-else>
+              <button v-for="item in inventoryItems" :key="item.Name" class="flex flex-col justify-between items-center text-center relative m-3 w-28 h-28 rounded-sm overflow-hidden bg-white" @click="equipItem(item)">
+                <div class="flex items-center h-full font-bold text-lg px-1">
+                  {{ item.Name }}
+                </div>
+              </button>
+            </div>
           </div>
         </div>
       </div>

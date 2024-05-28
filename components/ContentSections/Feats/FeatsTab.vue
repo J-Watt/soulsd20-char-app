@@ -6,7 +6,7 @@
     
     <div class="flex h-full">
       <div class="flex flex-col w-2/4 border-r overflow-auto">
-        <div class="sticky top-0 p-4 bg-deepblue w-full flex flex-col justify-center text-white font-semibold z-10 border-b">
+        <div class="sticky top-0 p-4 w-full flex flex-col justify-center text-white font-semibold z-10 border-b">
           <div class="flex justify-between bg-white rounded-md overflow-hidden text-charcoal">
             <button class="text-center border-r border-black flex-1" :class="activeTab === 'weaponfeats' && 'bg-[#2a5573] text-white'" @click="activeTab = 'weaponfeats'">
               <div class="p-1">
