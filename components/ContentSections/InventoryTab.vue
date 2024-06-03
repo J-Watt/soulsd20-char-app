@@ -29,13 +29,13 @@
               You have no {{ itemCategoryDescription }} in your inventory
             </div>
             <div v-else class="flex flex-wrap w-full inv py-4">
-              <div v-for="item in inventoryItems" :key="item.Name" class="flex flex-col justify-between items-center text-center relative m-3 w-28 h-28 rounded-sm overflow-hidden bg-white">
+              <div v-for="item in inventoryItems" :key="item.name" class="flex flex-col justify-between items-center text-center relative m-3 w-28 h-28 rounded-sm overflow-hidden bg-white">
                 <div class="flex items-center h-full font-bold text-lg px-1">
-                  {{ item.Name }}
+                  {{ item.name }}
                 </div>
         
                 <span class="flex items-center justify-center absolute top-0 left-0 bg-teal text-white font-bold w-4 h-4">
-                  {{ item.Quantity }}
+                  {{ item.quantity }}
                 </span>
       
                 <button class="flex items-center justify-center absolute top-0 right-0 rounded w-4 h-4" @click="deleteItem(item)">
@@ -60,10 +60,10 @@
       
           <div class="p-4 mb-20">
             <div class="flex flex-wrap w-full text-xs">
-              <div v-for="item in allItems" :key="'item-' + item.Name" class="flex flex-col justify-between items-center text-center relative m-3 w-28 h-28 rounded bg-white overflow-hidden">
-                <div class="flex items-center justify-center flex-1 text-lg p-1 overflow-hidden text-ellipsis" :class="item.Name.length > 28 && 'text-base'" style="max-height: 96px; width: 112px;">
+              <div v-for="item in allItems" :key="'item-' + item.name" class="flex flex-col justify-between items-center text-center relative m-3 w-28 h-28 rounded bg-white overflow-hidden">
+                <div class="flex items-center justify-center flex-1 text-lg p-1 overflow-hidden text-ellipsis" :class="item.name.length > 28 && 'text-base'" style="max-height: 96px; width: 112px;">
                   <div class="overflow-hidden text-ellipsis block text-center max-h-full">
-                    {{ item.Name }}
+                    {{ item.name }}
                   </div>
                 </div>
                 
@@ -126,7 +126,6 @@
 
 <script setup lang="ts">
 import * as invutils from '@/mixins/invutils'
-import { Item } from '@/mixins/types'
 import { usePlayerStore } from '@/store/player'
 import { useCompendiumStore } from '~~/store/compendium'
 
@@ -164,7 +163,7 @@ const allItems = computed(()=> {
 
 const typeTabs = [
   { Name: 'All', Identifier: 'all', },
-  { Name: 'Items', Identifier: 'tools', },
+  { Name: 'Tools', Identifier: 'tools', },
   { Name: 'Items', Identifier: 'misc', },
   { Name: 'Weapons', Identifier: 'weapon', },
   { Name: 'Armor', Identifier: 'armor', },
@@ -184,23 +183,23 @@ function createItem() {
   creatingItem.value = false
 }
 
-function addItem(item: Item) {
+function addItem(item: any) {
   store.addInventoryItem(item.UUID)
 }
 
-function deleteItem(item: Item) {
+function deleteItem(item: any) {
   store.removeInventoryItem(item.UUID)
 }
 
-function increaseItemQuantity(item: Item) {
+function increaseItemQuantity(item: any) {
   store.increaseItemQuantity(item.UUID)
 }
 
-function decreaseItemQuantity(item: Item) {
+function decreaseItemQuantity(item: any) {
   store.decreaseItemQuantity(item.UUID)
 }
 
-function itemNotInInventory(item: Item) {
+function itemNotInInventory(item: any) {
   if (!store.Inventory.find(i => i.UUID === item.UUID)) return true
 }
 </script>

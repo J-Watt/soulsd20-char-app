@@ -1,12 +1,12 @@
 <template>
-  <div class="flex items-center w-full rounded-sm text-lg font-bold bg-white overflow-hidden">
-    <div class="flex items-center border-r border-black">
-      <div class="flex flex-col">
-        <button class="flex items-center justify-center bg-teal border-b text-sm text-white w-5 h-4" @click="increaseWeaponProficiency(identifier)">
+  <div class="flex items-center w-full rounded-sm text-lg font-bold bg-white overflow-hidden h-[60px]">
+    <div class="flex items-center border-r border-black h-full">
+      <div class="flex flex-col h-full">
+        <button class="flex items-center justify-center bg-teal border-b text-sm text-white w-5 h-1/2" @click="increaseWeaponProficiency(identifier)">
           +
         </button>
 
-        <button class="flex items-center justify-center bg-teal text-sm text-white w-5 h-5"  @click="decreaseWeaponProficiency(identifier)">
+        <button class="flex items-center justify-center bg-teal text-sm text-white w-5 h-1/2"  @click="decreaseWeaponProficiency(identifier)">
           -
         </button>
       </div>
@@ -17,7 +17,7 @@
     </div>
 
     <div class="flex w-full justify-between items-center mr-3">
-      <span class="py-1 pl-3 pr-2">
+      <span class="py-1 pl-3 pr-2 leading-5">
         {{ name }}
       </span>
 

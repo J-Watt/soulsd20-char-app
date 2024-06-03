@@ -14,7 +14,7 @@ useHead({
 })
 
 onBeforeMount(()=>{
-  // compendiumStore.getCompendium()
+  compendiumStore.getCompendium()
 })
 </script>
 

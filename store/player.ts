@@ -6,7 +6,6 @@ import {
   Item,
   Spell,
   WeaponFeat,
-  WeaponProficiencies,
   UserInputValues,
   Notes,
 } from '@/mixins/types'
@@ -32,7 +31,7 @@ type RootState = {
   WeaponFeats: WeaponFeat[];
   CharacterStats: CharacterStats;
   Spells: Spell[];
-  WeaponProficiencies: WeaponProficiencies;
+  WeaponProficiencies: any;
 
   Notes: Notes;
 }
@@ -125,6 +124,7 @@ export const usePlayerStore = defineStore({
     DestinyFeatSlots: 0,
     DestinyFeats: [],
     WeaponFeats: [],
+    Spells: [],
     CharacterStats: {
       Resistances: {
         Curse: 0,
@@ -172,25 +172,29 @@ export const usePlayerStore = defineStore({
         Cosmic: 0,
       },
     },
-    Spells: [],
     WeaponProficiencies: {
-      Spear: 0,
-      Shield: 0,
-      Gun: 0,
-      Dagger: 0,
-      Whip: 0,
-      Hammer: 0,
-      StraightSword: 0,
-      Katana: 0,
-      Greatsword: 0,
-      Reaper: 0,
-      Axe: 0,
-      Fist: 0,
-      Bow: 0,
-      Halberd: 0,
-      Twinblade: 0,
-      Sorcery: 0,
-      Miracles: 0,
+      FIST: 0,
+      DAGGER: 0,
+      STRAIGHT_THRUST: 0,
+      KATANA_CURVED: 0,
+      ULTRA_GREAT_SWORD: 0,
+      GREAT_AXE: 0,
+      GREAT_HAMMER: 0,
+      TWINBLADE: 0,
+      SPEAR: 0,
+      HALBERD: 0,
+      REAPER: 0,
+      WHIP: 0,
+      CROSS_BOW: 0,
+      GREAT_BOW_BALLISTA: 0,
+      GUN: 0,
+      SHIELD: 0,
+      SORCERY: 0,
+      MIRACLE: 0,
+      PYROMANCY: 0,
+      HEX: 0,
+      SPIRIT_SUMMONING: 0,
+      DUAL_WIELDING: 0,
     },
     Notes: {
       General: []
